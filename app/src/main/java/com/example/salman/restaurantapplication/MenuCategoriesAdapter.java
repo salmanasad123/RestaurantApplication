@@ -3,7 +3,6 @@ package com.example.salman.restaurantapplication;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
-import android.util.EventLog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.w3c.dom.Text;
+
 
 import java.util.List;
 
@@ -34,6 +33,7 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
     public int restaurantIDfromEventBus;
     int categoryID;
 
+
     Context menuCategories;
     List<RestaurantCategories> restaurantCategories;
 
@@ -41,8 +41,7 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
     public MenuCategoriesAdapter(Context applicationContext, List<RestaurantCategories> restaurantCategoriesList) {
         this.menuCategories = applicationContext;
         this.restaurantCategories = restaurantCategoriesList;
-
-
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
     public void onBindViewHolder(MenuCategoriesViewHolder holder, final int position) {
         final RestaurantCategories categories = restaurantCategories.get(position);
         holder.textView.setText(categories.getCategoryName());
-        EventBus.getDefault().register(this);
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -112,12 +111,14 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
 
 
         }
+
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(GetRestaurantIDEvent event) {
-        restaurantIDfromEventBus = event.getValue();
-        Log.d(TAG, "onEvent: " + restaurantIDfromEventBus);
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(GetRestaurantIDEvent getRestaurantIDEvent) {
+
+        restaurantIDfromEventBus = getRestaurantIDEvent.getValue();
+        Log.d(TAG, "onEvent: Chal gayaaa" + restaurantIDfromEventBus);
     }
 }
 

@@ -42,7 +42,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
         //Event BUS///////////////////////////////////////////
         GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(getRestaurantID);
-        EventBus.getDefault().post(getRestaurantIDEvent);
+        EventBus.getDefault().postSticky(getRestaurantIDEvent);
 
 
         Retrofit retrofit = new Retrofit.Builder()

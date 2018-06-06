@@ -3,6 +3,7 @@ package com.example.salman.restaurantapplication;
 import android.content.Intent;
 import android.media.Rating;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
 
+    private static final String TAG = "MTAG";
     View view;
     List<Restaurant> restaurants;
     GetRestaurants context;
@@ -43,6 +45,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @Override
     public void onBindViewHolder(RestaurantViewHolder holder, final int position) {
         final Restaurant restaurant = restaurants.get(position);
+
+        Log.d(TAG, "onBindViewHolder: "+restaurant.getRestaurantName());
+
         holder.restaurantName.setText(restaurant.getRestaurantName());
         holder.restaurantRating.setRating(restaurant.getRating());
 
@@ -77,6 +82,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         ImageView restaurantImage;
         TextView restaurantName;
         RatingBar restaurantRating;
+
 
         public RestaurantViewHolder(View itemView) {
 

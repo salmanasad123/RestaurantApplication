@@ -20,18 +20,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GetRestaurantMenuCategories extends AppCompatActivity {
 
     private static final String TAG = "MTAG";
-    RecyclerView showCategoriesRecyclerView;
+    RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    List<RestaurantCategories> restaurantMenuCategories;
+
+    List<RestaurantCategories> restaurantCategoriesList;
     int getRestaurantID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_restaurant_menu_categories);
-        showCategoriesRecyclerView = findViewById(R.id.showRestaurantCategories);
+
+        recyclerView = findViewById(R.id.ShowCategoriesRecyclerView);
         layoutManager = new LinearLayoutManager(this);
-        showCategoriesRecyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
+
 
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
 
@@ -47,12 +50,9 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<RestaurantCategories>> call, Response<List<RestaurantCategories>> response) {
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
-                restaurantMenuCategories = response.body();
-
-                RestaurantCategoriesAdapter RCA =
-                        new RestaurantCategoriesAdapter(GetRestaurantMenuCategories.this, restaurantMenuCategories);
-
-                showCategoriesRecyclerView.setAdapter(RCA);
+                restaurantCategoriesList = response.body();
+                MenuCategoriesAdapter menuCategoriesAdapter = new MenuCategoriesAdapter(GetRestaurantMenuCategories.this,restaurantCategoriesList);
+                recyclerView.setAdapter(menuCategoriesAdapter);
             }
 
             @Override

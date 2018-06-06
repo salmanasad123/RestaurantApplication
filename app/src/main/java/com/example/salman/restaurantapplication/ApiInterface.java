@@ -3,6 +3,7 @@ package com.example.salman.restaurantapplication;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -25,5 +26,6 @@ public interface ApiInterface {
     @GET("api/category/{category_id}/product/{restaurant_id}")
     Call<List<GetMenuProducts>> getMenuProducts(@Path("category_id") int category_id, @Path("restaurant_id") int restaurant_id);
 
+    //can use @ Field as well
 
 }

@@ -13,7 +13,11 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
+
+import retrofit2.http.GET;
 
 /**
  * Created by Salman on 5/31/2018.
@@ -46,7 +50,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     public void onBindViewHolder(RestaurantViewHolder holder, final int position) {
         final Restaurant restaurant = restaurants.get(position);
 
-        Log.d(TAG, "onBindViewHolder: "+restaurant.getRestaurantName());
+        Log.d(TAG, "onBindViewHolder: " + restaurant.getRestaurantName());
 
         holder.restaurantName.setText(restaurant.getRestaurantName());
         holder.restaurantRating.setRating(restaurant.getRating());
@@ -60,6 +64,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 // String restaurantGson = gson.toJson(restaurants.get(position));
                 Intent intent = new Intent(context, GetRestaurantMenuCategories.class);

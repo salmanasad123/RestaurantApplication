@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,7 +26,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     List<RestaurantCategories> restaurantCategoriesList;
-    int getRestaurantID;
+    public int getRestaurantID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +40,29 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
 
+        //Event BUS///////////////////////////////////////////
+        GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(getRestaurantID);
+        EventBus.getDefault().post(getRestaurantIDEvent);
+
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.5:8000")
+                .baseUrl("http://192.168.1.4:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         final Call<List<RestaurantCategories>> restaurantCategoriesCall = apiInterface.getRestaurantMenuCategories(getRestaurantID);
         restaurantCategoriesCall.enqueue(new Callback<List<RestaurantCategories>>() {
+
+
             @Override
             public void onResponse(Call<List<RestaurantCategories>> call, Response<List<RestaurantCategories>> response) {
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
                 restaurantCategoriesList = response.body();
-                MenuCategoriesAdapter menuCategoriesAdapter = new MenuCategoriesAdapter(GetRestaurantMenuCategories.this,restaurantCategoriesList);
+                MenuCategoriesAdapter menuCategoriesAdapter = new MenuCategoriesAdapter(GetRestaurantMenuCategories.this, restaurantCategoriesList);
                 recyclerView.setAdapter(menuCategoriesAdapter);
+
+
             }
 
             @Override

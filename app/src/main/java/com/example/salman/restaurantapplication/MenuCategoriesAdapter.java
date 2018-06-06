@@ -118,7 +118,7 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
     public void onEvent(GetRestaurantIDEvent getRestaurantIDEvent) {
 
         restaurantIDfromEventBus = getRestaurantIDEvent.getValue();
-        Log.d(TAG, "onEvent: Chal gayaaa" + restaurantIDfromEventBus);
+        Log.d(TAG, "onEvent: Got RestaurantID via EventBus" + restaurantIDfromEventBus);
     }
 }
 

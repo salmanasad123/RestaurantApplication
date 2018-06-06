@@ -41,6 +41,11 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
 
         //Event BUS///////////////////////////////////////////
+
+        // IMPORTANT /////////
+        // Second Activity should be registered before the Bus sends the Event otherwise it will not work,
+        // in such case use sticky event
+
         GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(getRestaurantID);
         EventBus.getDefault().postSticky(getRestaurantIDEvent);
 

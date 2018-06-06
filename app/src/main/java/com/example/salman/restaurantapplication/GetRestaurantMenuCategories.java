@@ -42,7 +42,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
         //Event BUS///////////////////////////////////////////
 
-        // IMPORTANT /////////
+        // IMPORTANT /////////////
         // Second Activity should be registered before the Bus sends the Event otherwise it will not work,
         // in such case use sticky event
 

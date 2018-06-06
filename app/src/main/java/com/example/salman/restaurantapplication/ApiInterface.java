@@ -20,4 +20,10 @@ public interface ApiInterface {
     // Pass the id of Restaurant to get the Menu Categories of that Restaurant
     @GET("api/restaurant/{id}/categories")
     Call<List<RestaurantCategories>> getRestaurantMenuCategories(@Path("id") int id);
+
+    // Get Products of restaurant categories
+    @GET("api/category/{category_id}/product/{restaurant_id}")
+    Call<List<GetMenuProducts>> getMenuProducts(@Path("category_id") int category_id, @Path("restaurant_id") int restaurant_id);
+
+
 }

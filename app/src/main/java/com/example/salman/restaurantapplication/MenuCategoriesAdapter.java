@@ -1,6 +1,7 @@
 package com.example.salman.restaurantapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import android.util.Log;
@@ -8,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,7 +46,7 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
     public MenuCategoriesAdapter(Context applicationContext, List<RestaurantCategories> restaurantCategoriesList) {
         this.menuCategories = applicationContext;
         this.restaurantCategories = restaurantCategoriesList;
-        EventBus.getDefault().register(this);
+        //    EventBus.getDefault().register(this);
     }
 
     @Override
@@ -62,11 +67,13 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
             @Override
             public void onClick(View view) {
 
-                categoryID = categories.getCategoryID();
-
-
+                // categoryID = categories.getCategoryID();
+                Intent intent = new Intent(menuCategories, ShowMenuProducts.class);
+                intent.putExtra("myCategoryID", categories.getCategoryID());
+                menuCategories.startActivity(intent);
+/*
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.4:8000")
+                        .baseUrl("http://192.168.10.4:8000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -80,6 +87,7 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
                     public void onResponse(Call<List<GetMenuProducts>> call, Response<List<GetMenuProducts>> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
 
+
                     }
 
                     @Override
@@ -88,8 +96,9 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
                     }
                 });
 
-
+*/
             }
+
         });
 
 
@@ -113,7 +122,8 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
         }
 
     }
-
+}
+/*
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(GetRestaurantIDEvent getRestaurantIDEvent) {
 
@@ -121,4 +131,4 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
         Log.d(TAG, "onEvent: Got RestaurantID via EventBus" + restaurantIDfromEventBus);
     }
 }
-
+*/

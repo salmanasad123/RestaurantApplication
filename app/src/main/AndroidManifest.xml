@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".GetRestaurants" />
         <activity android:name=".SortActivity" />
-        <activity android:name=".GetRestaurantMenuCategories"></activity>
+        <activity android:name=".GetRestaurantMenuCategories" />
+        <activity android:name=".ShowMenuProducts"></activity>
     </application>
 
 </manifest>

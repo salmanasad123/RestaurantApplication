@@ -67,6 +67,8 @@ public class ShowMenuProducts extends AppCompatActivity {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(GetRestaurantIDEvent getRestaurantIDEvent) {
+
         RestaurantIDfromEventBus = getRestaurantIDEvent.getValue();
+
     }
 }

@@ -23,6 +23,7 @@ public class ShowMenuProducts extends AppCompatActivity {
     private static final String TAG = "MTAG";
     public int getCategoryiD;
     public int RestaurantIDfromEventBus;
+    List<GetMenuProducts> getMenuProducts;
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -41,8 +42,8 @@ public class ShowMenuProducts extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.7:8000")
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.4:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -54,6 +55,10 @@ public class ShowMenuProducts extends AppCompatActivity {
             public void onResponse(Call<List<GetMenuProducts>> call, Response<List<GetMenuProducts>> response) {
 
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+                getMenuProducts = response.body();
+
+                ProductsAdapter productsAdapter = new ProductsAdapter(ShowMenuProducts.this, getMenuProducts);
+                recyclerView.setAdapter(productsAdapter);
             }
 
             @Override

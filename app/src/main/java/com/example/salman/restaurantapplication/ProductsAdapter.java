@@ -42,7 +42,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
         Log.d(TAG, "onBindViewHolder: " + products.getProductName() + products.getPrice());
 
         holder.productName.setText(products.getProductName());
-        holder.productPrice.setText("PKR  "+ products.getPrice().toString());
+        holder.productPrice.setText("PKR  " + products.getPrice().toString());
 
     }
 

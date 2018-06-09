@@ -37,4 +37,13 @@
         app:srcCompat="@drawable/kuks"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="7dp" />
+
+    <Button
+        android:id="@+id/addProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ProductName"
+        android:layout_marginEnd="12dp"
+        android:text="Add" />
 </RelativeLayout>

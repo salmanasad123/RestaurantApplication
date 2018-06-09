@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -38,11 +40,23 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
 
     @Override
     public void onBindViewHolder(productsViewHolder holder, int position) {
-        GetMenuProducts products = getMenuProducts.get(position);
+        final GetMenuProducts products = getMenuProducts.get(position);
         Log.d(TAG, "onBindViewHolder: " + products.getProductName() + products.getPrice());
 
         holder.productName.setText(products.getProductName());
         holder.productPrice.setText("PKR  " + products.getPrice().toString());
+
+        holder.addProductbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(showMenuProducts, "Clicked " + products.getProductName(), Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+        });
+
 
     }
 
@@ -56,6 +70,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
         ImageView productImage;
         TextView productName;
         TextView productPrice;
+        Button addProductbtn;
 
         public productsViewHolder(View itemView) {
 
@@ -63,6 +78,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
             productImage = itemView.findViewById(R.id.ProductImageView);
             productName = itemView.findViewById(R.id.ProductName);
             productPrice = itemView.findViewById(R.id.ProductPrice);
+            addProductbtn = itemView.findViewById(R.id.addProducts);
         }
     }
 }

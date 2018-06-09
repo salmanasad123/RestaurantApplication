@@ -1,10 +1,13 @@
 package com.example.salman.restaurantapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,6 +30,7 @@ public class ShowMenuProducts extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    Button viewCart;
 
 
     @Override
@@ -34,6 +38,7 @@ public class ShowMenuProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_menu_products);
 
+        viewCart = findViewById(R.id.ViewCart);
         recyclerView = findViewById(R.id.showProducts);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -43,7 +48,7 @@ public class ShowMenuProducts extends AppCompatActivity {
         EventBus.getDefault().register(this);
 
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.4:8000")
+                .baseUrl("http://192.168.1.3:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -68,7 +73,16 @@ public class ShowMenuProducts extends AppCompatActivity {
             }
         });
 
+        viewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ShowMenuProducts.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(GetRestaurantIDEvent getRestaurantIDEvent) {

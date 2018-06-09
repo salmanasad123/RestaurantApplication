@@ -56,7 +56,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
         holder.addProductbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(showMenuProducts, "Clicked " + products.getProductName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(showMenuProducts, "Item Added To Cart" + products.getProductName(), Toast.LENGTH_SHORT).show();
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("http://192.168.1.4:8000")

@@ -21,7 +21,8 @@
         <activity android:name=".GetRestaurants" />
         <activity android:name=".SortActivity" />
         <activity android:name=".GetRestaurantMenuCategories" />
-        <activity android:name=".ShowMenuProducts"></activity>
+        <activity android:name=".ShowMenuProducts" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>

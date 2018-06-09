@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/cartItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/cartItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cartItemName"
+        android:layout_alignBottom="@+id/cartItemName"
+        android:layout_toStartOf="@+id/btnCartDelete"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnCartDelete"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cartItemPrice"
+        android:layout_alignBottom="@+id/cartItemPrice"
+        android:layout_alignParentEnd="true"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/btnCartIncrease"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/btnShowQuantity"
+        android:layout_marginEnd="14dp"
+        android:layout_toStartOf="@+id/btnShowQuantity"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/btnCartDecrease"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/btnShowQuantity"
+        android:layout_centerHorizontal="true"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/btnShowQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cartItemPrice"
+        android:layout_alignBottom="@+id/cartItemPrice"
+        android:layout_toStartOf="@+id/btnCartDecrease"
+        android:text="QTY" />
+</RelativeLayout>

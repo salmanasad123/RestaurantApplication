@@ -15,6 +15,12 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Created by Salman on 6/7/2018.
  */
@@ -24,6 +30,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
     private static final String TAG = "MTAG";
     ShowMenuProducts showMenuProducts;
     List<GetMenuProducts> getMenuProducts;
+    List<Cart> cartList;
 
 
     public ProductsAdapter(ShowMenuProducts showMenuProducts, List<GetMenuProducts> getMenuProducts) {
@@ -39,7 +46,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
     }
 
     @Override
-    public void onBindViewHolder(productsViewHolder holder, int position) {
+    public void onBindViewHolder(productsViewHolder holder, final int position) {
         final GetMenuProducts products = getMenuProducts.get(position);
         Log.d(TAG, "onBindViewHolder: " + products.getProductName() + products.getPrice());
 
@@ -51,7 +58,26 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
             public void onClick(View view) {
                 Toast.makeText(showMenuProducts, "Clicked " + products.getProductName(), Toast.LENGTH_SHORT).show();
 
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://192.168.1.4:8000")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
+                final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+                final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID().toString(), "2");
+
+
+                cartCall.enqueue(new Callback<Cart>() {
+                    @Override
+                    public void onResponse(Call<Cart> call, Response<Cart> response) {
+                        Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Cart> call, Throwable t) {
+
+                    }
+                });
 
 
             }

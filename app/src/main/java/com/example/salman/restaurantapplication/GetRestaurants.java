@@ -65,6 +65,7 @@ public class GetRestaurants extends AppCompatActivity {
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
                 restaurants = response.body();
 
+
                 /*
                 Collections.sort(restaurants, new Comparator<Restaurant>() {
                     @Override

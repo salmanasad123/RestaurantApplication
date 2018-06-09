@@ -8,45 +8,66 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Cart {
-
-    @SerializedName("ProductID")
-    @Expose
-    private String productID;
-    @SerializedName("quantity")
-    @Expose
-    private String quantity;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
     @SerializedName("CartItemID")
     @Expose
     private Integer cartItemID;
+    @SerializedName("ProductID")
+    @Expose
+    private Integer productID;
+    @SerializedName("ProductName")
+    @Expose
+    private String productName;
+    @SerializedName("ProductPrice")
+    @Expose
+    private Integer productPrice;
+    @SerializedName("quantity")
+    @Expose
+    private Integer quantity;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
 
-    public String getProductID() {
+    public Integer getCartItemID() {
+        return cartItemID;
+    }
+
+    public void setCartItemID(Integer cartItemID) {
+        this.cartItemID = cartItemID;
+    }
+
+    public Integer getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(Integer productID) {
         this.productID = productID;
     }
 
-    public String getQuantity() {
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Integer getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public String getCreatedAt() {
@@ -57,13 +78,15 @@ public class Cart {
         this.createdAt = createdAt;
     }
 
-    public Integer getCartItemID() {
-        return cartItemID;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setCartItemID(Integer cartItemID) {
-        this.cartItemID = cartItemID;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }
+
+
 

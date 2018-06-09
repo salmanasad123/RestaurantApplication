@@ -51,7 +51,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.3:8000")
+                .baseUrl("http://192.168.1.6:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

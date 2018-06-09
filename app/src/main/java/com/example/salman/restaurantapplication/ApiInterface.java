@@ -39,9 +39,11 @@ public interface ApiInterface {
 
     @POST("api/cartitems")
     @FormUrlEncoded
-    Call<Cart> addToCart(@Field("ProductID")String ProductID,
+    Call<Cart> addToCart(@Field("ProductID") String ProductID,
+                         @Field("ProductName") String ProductName,
+                         @Field("ProductPrice") String ProductPrice,
                          @Field("quantity") String quantity
-                         );
+    );
 
 
 }

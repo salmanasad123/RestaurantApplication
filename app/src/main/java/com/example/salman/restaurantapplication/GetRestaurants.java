@@ -4,11 +4,13 @@ import android.content.Intent;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import android.widget.ImageView;
+
 
 import com.google.gson.Gson;
 
@@ -16,10 +18,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetRestaurants extends AppCompatActivity {
@@ -30,6 +34,8 @@ public class GetRestaurants extends AppCompatActivity {
     android.support.v7.widget.Toolbar toolbar;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    DividerItemDecoration dividerItemDecoration;
+
 
     // ACTIVITY
     @Override
@@ -42,17 +48,17 @@ public class GetRestaurants extends AppCompatActivity {
         recyclerView = findViewById(R.id.showRestaurants);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        ImageView imageView = findViewById(R.id.mainImage);
+        dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
 
         //ToolBar
-        toolbar = findViewById(R.id.myToolBar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Restaurants");
 
 
         // RETROFIT INSTANCE
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6:8000")
+                .baseUrl("http://192.168.1.3:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -89,6 +95,7 @@ public class GetRestaurants extends AppCompatActivity {
     }
 
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -96,6 +103,7 @@ public class GetRestaurants extends AppCompatActivity {
     }
 
     // TOOLBAR BUTTON
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, SortActivity.class);
@@ -103,7 +111,7 @@ public class GetRestaurants extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
+*/
 
 }
 

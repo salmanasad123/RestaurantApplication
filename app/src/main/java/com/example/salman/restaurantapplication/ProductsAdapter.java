@@ -59,7 +59,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
                 Toast.makeText(showMenuProducts, "Item Added To Cart" + products.getProductName(), Toast.LENGTH_SHORT).show();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.6:8000")
+                        .baseUrl("http://192.168.1.3:8000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 

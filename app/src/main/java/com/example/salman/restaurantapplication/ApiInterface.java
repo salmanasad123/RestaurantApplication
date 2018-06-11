@@ -14,6 +14,7 @@ import retrofit2.http.Path;
  */
 
 public interface ApiInterface {
+
     @GET("api/restaurants")
     Call<List<Restaurant>> getRestaurants();
 

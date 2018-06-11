@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
@@ -38,8 +38,8 @@
         android:id="@+id/btnCartIncrease"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignTop="@+id/btnShowQuantity"
-        android:layout_marginEnd="14dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="19dp"
         android:layout_toStartOf="@+id/btnShowQuantity"
         android:text="+" />
 
@@ -47,17 +47,17 @@
         android:id="@+id/btnCartDecrease"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignTop="@+id/btnShowQuantity"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/cartItemPrice"
         android:text="-" />
 
     <TextView
         android:id="@+id/btnShowQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnCartDelete"
-        android:layout_marginEnd="22dp"
-        android:layout_marginTop="14dp"
+        android:layout_alignBaseline="@+id/btnCartDecrease"
+        android:layout_alignBottom="@+id/btnCartDecrease"
+        android:layout_marginEnd="21dp"
         android:layout_toStartOf="@+id/btnCartDecrease"
         android:text="QTY" />
-</LinearLayout>
+</RelativeLayout>

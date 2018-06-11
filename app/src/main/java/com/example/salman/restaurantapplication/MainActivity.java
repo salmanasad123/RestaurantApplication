@@ -10,19 +10,15 @@ import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    android.support.v7.widget.Toolbar toolbar;
+
     Button b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.login_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Login Into The Application");
 
-
-        b1 = findViewById(R.id.button);
+        b1 = findViewById(R.id.btn_continue);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

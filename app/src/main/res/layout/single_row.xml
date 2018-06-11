@@ -14,18 +14,19 @@
         app:srcCompat="@drawable/kuks" />
 
     <TextView
-
         android:id="@+id/restaurantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/restaurantImage"
+        android:fontFamily="sans-serif-medium"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="italic" />
 
     <RatingBar
         android:id="@+id/restaurant_rating"
-        style="?android:attr/ratingBarStyleSmall"
+        style="@android:style/Widget.Material.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/restaurantName"

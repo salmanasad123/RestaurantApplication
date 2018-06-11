@@ -2,6 +2,7 @@ package com.example.salman.restaurantapplication;
 
 import android.content.Intent;
 import android.media.Rating;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,11 +88,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         ImageView restaurantImage;
         TextView restaurantName;
         RatingBar restaurantRating;
+        CardView cardView;
 
 
         public RestaurantViewHolder(View itemView) {
 
             super(itemView);
+            cardView = itemView.findViewById(R.id.restaurantCardView);
             restaurantName = itemView.findViewById(R.id.restaurantName);
             restaurantImage = itemView.findViewById(R.id.restaurantImage);
             restaurantRating = itemView.findViewById(R.id.restaurant_rating);

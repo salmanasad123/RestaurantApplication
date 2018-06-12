@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    
+
     tools:context="com.example.salman.restaurantapplication.GetRestaurants">
 
 
@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/mainImage"
-        android:text="Restaurants" />
+        android:textColor="#000000"
+        android:text="@string/restaurantName" />
 
     <ImageView
         android:id="@+id/mainImage"

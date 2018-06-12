@@ -30,6 +30,20 @@ public class Cart {
     @Expose
     private String updatedAt;
 
+    /*
+    public Cart(Integer cartItemID, Integer productID, String productName, Integer productPrice, Integer quantity) {
+        this.cartItemID = cartItemID;
+        this.productID = productID;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.quantity = quantity;
+    }
+*/
+
+    public Cart(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public Integer getCartItemID() {
         return cartItemID;
     }

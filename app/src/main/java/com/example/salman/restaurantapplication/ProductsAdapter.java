@@ -59,13 +59,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
                 Toast.makeText(showMenuProducts, "Item Added To Cart" + products.getProductName(), Toast.LENGTH_SHORT).show();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.3:8000")
+                        .baseUrl("http://192.168.1.5:8000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-                final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID().toString(),
-                        products.getProductName(), products.getPrice().toString(), String.valueOf(1));
+                final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID(),
+                        products.getProductName(), products.getPrice(), 1);
 
 
                 cartCall.enqueue(new Callback<Cart>() {

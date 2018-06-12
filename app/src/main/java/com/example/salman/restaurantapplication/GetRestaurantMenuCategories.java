@@ -46,7 +46,6 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         cardView = findViewById(R.id.categoriesCardView);
 
 
-
         getRestaurantImage = getIntent().getStringExtra("myImageString");
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
 

@@ -49,8 +49,8 @@ public class GetRestaurants extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ImageView imageView = findViewById(R.id.mainImage);
-        dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+       // dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+       // recyclerView.addItemDecoration(dividerItemDecoration);
 
 
         //ToolBar
@@ -58,7 +58,7 @@ public class GetRestaurants extends AppCompatActivity {
 
         // RETROFIT INSTANCE
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.3:8000")
+                .baseUrl("http://192.168.1.5:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

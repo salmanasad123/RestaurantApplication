@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -55,6 +56,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         holder.restaurantName.setText(restaurant.getRestaurantName());
         holder.restaurantRating.setRating(restaurant.getRating());
+        Picasso.with(context)
+                .load(restaurants.get(position).getLink())
+                .resize(250, 250)
+                .into(holder.restaurantImage);
 
         //Convert Each Object to Json to send to another Activity
         // Creating Gson Object
@@ -69,7 +74,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
                 // String restaurantGson = gson.toJson(restaurants.get(position));
                 Intent intent = new Intent(context, GetRestaurantMenuCategories.class);
-                intent.putExtra("myObjectString", restaurant.getRestaurantID());  // passing restaurant id to other activity
+                intent.putExtra("myObjectString", restaurant.getRestaurantID());
+                intent.putExtra("myImageString", restaurant.getLink());// passing restaurant id to other activity
                 context.startActivity(intent);
 
 

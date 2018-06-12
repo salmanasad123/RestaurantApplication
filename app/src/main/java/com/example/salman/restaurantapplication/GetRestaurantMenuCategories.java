@@ -1,13 +1,17 @@
 package com.example.salman.restaurantapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -24,9 +28,11 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
     private static final String TAG = "MTAG";
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-
     List<RestaurantCategories> restaurantCategoriesList;
     public int getRestaurantID;
+    String getRestaurantImage;
+    ImageView imageView;
+    CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +42,19 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         recyclerView = findViewById(R.id.ShowCategoriesRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        imageView = findViewById(R.id.menuCategorybackgroundImage);
+        cardView = findViewById(R.id.categoriesCardView);
 
 
+
+        getRestaurantImage = getIntent().getStringExtra("myImageString");
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
+
+
+        Picasso.with(GetRestaurantMenuCategories.this)
+                .load(getRestaurantImage)
+                .resize(1440, 1000)
+                .into(imageView);
 
         //Event BUS///////////////////////////////////////////
 
@@ -51,7 +67,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.3:8000")
+                .baseUrl("http://192.168.1.5:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

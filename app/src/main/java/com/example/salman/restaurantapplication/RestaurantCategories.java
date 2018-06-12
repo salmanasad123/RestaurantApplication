@@ -26,6 +26,9 @@ public class RestaurantCategories {
     @SerializedName("Rating")
     @Expose
     private Integer rating;
+    @SerializedName("Link")
+    @Expose
+    private String link;
     @SerializedName("created_at")
     @Expose
     private Object createdAt;
@@ -77,6 +80,14 @@ public class RestaurantCategories {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public Integer getRating() {

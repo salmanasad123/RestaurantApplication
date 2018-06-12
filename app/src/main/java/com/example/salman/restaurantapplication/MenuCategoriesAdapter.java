@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -59,6 +62,10 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
     public void onBindViewHolder(MenuCategoriesViewHolder holder, final int position) {
         final RestaurantCategories categories = restaurantCategories.get(position);
         holder.textView.setText(categories.getCategoryName());
+        Picasso.with(menuCategories)
+                .load(restaurantCategories.get(position).getLink())
+                .resize(250,250)
+                .into(holder.imageView);
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,10 +120,12 @@ public class MenuCategoriesAdapter extends RecyclerView.Adapter<MenuCategoriesAd
 
 
         TextView textView;
+        ImageView imageView;
 
         public MenuCategoriesViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.showCategories);
+            imageView = itemView.findViewById(R.id.categoryImage);
 
 
         }

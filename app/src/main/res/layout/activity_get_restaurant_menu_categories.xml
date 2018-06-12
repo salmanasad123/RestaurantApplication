@@ -13,10 +13,10 @@
 
 
         <ImageView
-            android:background="@android:color/transparent"
             android:id="@+id/menuCategorybackgroundImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -28,6 +28,7 @@
             android:fontFamily="sans-serif"
             android:text="Menu Categories"
             android:textAlignment="center"
+            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
     </RelativeLayout>

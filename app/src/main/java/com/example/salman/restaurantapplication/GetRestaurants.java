@@ -29,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetRestaurants extends AppCompatActivity {
 
+
     private static final String TAG = "MTAG";
     List<Restaurant> restaurants;
     Gson gson;
@@ -45,11 +46,14 @@ public class GetRestaurants extends AppCompatActivity {
         setContentView(R.layout.activity_get_restaurants);
 
 
-        //RecyclerView
+        /**
+         * RecyclerView
+         **/
         recyclerView = findViewById(R.id.showRestaurants);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ImageView imageView = findViewById(R.id.mainImage);
+
         // dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         // recyclerView.addItemDecoration(dividerItemDecoration);
 
@@ -57,7 +61,10 @@ public class GetRestaurants extends AppCompatActivity {
         //ToolBar
 
 
-        // RETROFIT INSTANCE
+        /**
+         * RETROFIT INSTANCE
+         */
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.1.5:8000")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -69,6 +76,7 @@ public class GetRestaurants extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
+
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
                 restaurants = response.body();
 
@@ -82,9 +90,15 @@ public class GetRestaurants extends AppCompatActivity {
                 });
 
                 */
+
+
                 RestaurantAdapter restaurantAdapter = new RestaurantAdapter(GetRestaurants.this, restaurants);
                 recyclerView.setAdapter(restaurantAdapter);
 
+                /**
+                 * Progress Bar will become unvisible when data is loaded, its like
+                 * a loading screen
+                 */
                 findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
             }

@@ -30,6 +30,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     List<RestaurantCategories> restaurantCategoriesList;
+
     public int getRestaurantID;
     String getRestaurantImage;
     ImageView imageView;
@@ -46,6 +47,9 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         imageView = findViewById(R.id.menuCategorybackgroundImage);
         cardView = findViewById(R.id.categoriesCardView);
 
+        /**
+         * Restaurant ID received from RestaurantActivity
+         */
 
         getRestaurantImage = getIntent().getStringExtra("myImageString");
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
@@ -58,12 +62,14 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
         //Event BUS///////////////////////////////////////////
 
-        // IMPORTANT //////////////
-        // Second Activity should be registered before the Bus sends the Event otherwise it will not work,
-        // in such case use sticky event
+        /**
+         * IMPORTANT
+         * Second Activity should be registered before the Bus sends the Event otherwise it will not work,
+         * in such case use sticky event
+         */
 
-        GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(getRestaurantID);
-        EventBus.getDefault().postSticky(getRestaurantIDEvent);
+        // GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(getRestaurantID);
+        // EventBus.getDefault().postSticky(getRestaurantIDEvent);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -79,7 +85,10 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<RestaurantCategories>> call, Response<List<RestaurantCategories>> response) {
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+
                 restaurantCategoriesList = response.body();
+
+
                 MenuCategoriesAdapter menuCategoriesAdapter = new MenuCategoriesAdapter(GetRestaurantMenuCategories.this, restaurantCategoriesList);
                 recyclerView.setAdapter(menuCategoriesAdapter);
 

@@ -7,6 +7,10 @@ package com.example.salman.restaurantapplication;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *  Restaurant Pojo Class of the Response received by hitting the url Get All restaurants
+ */
+
 public class Restaurant {
 
     @SerializedName("RestaurantID")

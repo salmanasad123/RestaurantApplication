@@ -8,6 +8,107 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Cart {
+
+    @SerializedName("CartItemID")
+    @Expose
+    private Integer cartItemID;
+    @SerializedName("ProductID")
+    @Expose
+    private Integer productID;
+    @SerializedName("ProductName")
+    @Expose
+    private String productName;
+    @SerializedName("ProductPrice")
+    @Expose
+    private Integer productPrice;
+    @SerializedName("quantity")
+    @Expose
+    private Integer quantity;
+    @SerializedName("RestaurantID")
+    @Expose
+    private Integer restaurantID;
+    @SerializedName("created_at")
+    @Expose
+    private Object createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private Object updatedAt;
+
+    public Cart(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getCartItemID() {
+        return cartItemID;
+    }
+
+    public void setCartItemID(Integer cartItemID) {
+        this.cartItemID = cartItemID;
+    }
+
+    public Integer getProductID() {
+        return productID;
+    }
+
+    public void setProductID(Integer productID) {
+        this.productID = productID;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Integer getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getRestaurantID() {
+        return restaurantID;
+    }
+
+    public void setRestaurantID(Integer restaurantID) {
+        this.restaurantID = restaurantID;
+    }
+
+    public Object getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Object createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Object getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Object updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+}
+
+
+
+
+
+  /*
     @SerializedName("CartItemID")
     @Expose
     private Integer cartItemID;
@@ -39,7 +140,7 @@ public class Cart {
         this.quantity = quantity;
     }
 */
-
+/*
     public Cart(Integer quantity) {
         this.quantity = quantity;
     }
@@ -102,5 +203,5 @@ public class Cart {
 
 }
 
-
+*/
 

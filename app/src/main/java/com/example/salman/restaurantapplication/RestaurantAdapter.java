@@ -44,18 +44,29 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+        /**
+         * Inflating how each row should appear in the recyclerView List
+         * inflating single row of restaurants
+         */
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row, parent, false);
         return new RestaurantViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RestaurantViewHolder holder, final int position) {
+
         final Restaurant restaurant = restaurants.get(position);
 
         Log.d(TAG, "onBindViewHolder: " + restaurant.getRestaurantName());
 
+        /**
+         * Setting values into textViews and Image Views
+         * Image View is set with Picasso, Links of Restaurant Images are saved in Database
+         */
         holder.restaurantName.setText(restaurant.getRestaurantName());
         holder.restaurantRating.setRating(restaurant.getRating());
+
+
         Picasso.with(context)
                 .load(restaurants.get(position).getLink())
                 .resize(250, 250)
@@ -66,11 +77,25 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         gson = new Gson();
 
 
-        // Recycler View Item Clicked
+        /**
+         * Recycler View Item Clicked
+         * When A Restaurant will be clicked its ID will be passed via intent to other activity
+         * because ID will be required to show the Categories of only that Restaurant which was clicked
+         */
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                /**
+                 * Event Bus to Post the ID of restaurant which was clicked to Show its Products and
+                 * its items in the cart. Restaurant ID will be Required by Cart Activity and
+                 * show Products Activity
+                 * Any activity or method or class that has subscribed/registered to this event will receive the event
+                 * in on Subscribe method
+                 */
+                GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(restaurant.getRestaurantID());
+                EventBus.getDefault().postSticky(getRestaurantIDEvent);
 
                 // String restaurantGson = gson.toJson(restaurants.get(position));
                 Intent intent = new Intent(context, GetRestaurantMenuCategories.class);
@@ -89,6 +114,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         return restaurants.size();
     }
 
+    /**
+     * View Holder Class to Hold The Views
+     * This will help to avoid FindViewByID operation every time
+     */
     public class RestaurantViewHolder extends RecyclerView.ViewHolder {
 
         ImageView restaurantImage;

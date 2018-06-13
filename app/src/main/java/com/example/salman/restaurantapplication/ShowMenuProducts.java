@@ -64,6 +64,7 @@ public class ShowMenuProducts extends AppCompatActivity {
 
                 ProductsAdapter productsAdapter = new ProductsAdapter(ShowMenuProducts.this, getMenuProducts);
                 recyclerView.setAdapter(productsAdapter);
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
             }
 
             @Override

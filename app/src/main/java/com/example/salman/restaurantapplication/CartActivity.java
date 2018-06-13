@@ -6,6 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,6 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CartActivity extends AppCompatActivity {
 
     private static final String TAG = "MTAG";
+
+    public int RestaurantIDFromEventBus;
+
     RecyclerView cartRecyclerView;
     RecyclerView.LayoutManager layoutManager;
     List<Cart> cartList;
@@ -31,13 +38,15 @@ public class CartActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         cartRecyclerView.setLayoutManager(layoutManager);
 
+        EventBus.getDefault().register(this);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.1.5:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        Call<List<Cart>> listCall = apiInterface.showCart();
+        Call<List<Cart>> listCall = apiInterface.showCart(RestaurantIDFromEventBus);
 
         listCall.enqueue(new Callback<List<Cart>>() {
 
@@ -59,6 +68,11 @@ public class CartActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(GetRestaurantIDEvent event) {
+        RestaurantIDFromEventBus = event.getValue();
     }
 
 }

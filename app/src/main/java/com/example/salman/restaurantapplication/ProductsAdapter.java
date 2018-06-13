@@ -2,6 +2,7 @@ package com.example.salman.restaurantapplication;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.EventLog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -28,6 +32,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.productsViewHolder> {
 
     private static final String TAG = "MTAG";
+
+    public int restaurantIdFromEventBus;
     ShowMenuProducts showMenuProducts;
     List<GetMenuProducts> getMenuProducts;
     List<Cart> cartList;
@@ -36,6 +42,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
     public ProductsAdapter(ShowMenuProducts showMenuProducts, List<GetMenuProducts> getMenuProducts) {
         this.showMenuProducts = showMenuProducts;
         this.getMenuProducts = getMenuProducts;
+
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -65,7 +74,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
 
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID(),
-                        products.getProductName(), products.getPrice(), 1);
+                        products.getProductName(), products.getPrice(), 1, restaurantIdFromEventBus);
 
 
                 cartCall.enqueue(new Callback<Cart>() {
@@ -107,5 +116,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
             productPrice = itemView.findViewById(R.id.ProductPrice);
             addProductbtn = itemView.findViewById(R.id.addProducts);
         }
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(GetRestaurantIDEvent restaurantIDEvent) {
+        restaurantIdFromEventBus = restaurantIDEvent.getValue();
     }
 }

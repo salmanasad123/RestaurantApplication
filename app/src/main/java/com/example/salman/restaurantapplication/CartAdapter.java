@@ -56,8 +56,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
                 counter = Integer.parseInt(holder.productQty.getText().toString());
-                holder.productQty.setText("" + ++counter);
-
+                if (counter >= 1) {
+                    holder.productQty.setText("" + ++counter);
+                }
                 //Cart cart1 = new Cart(cart.getCartItemID(), cart.getProductID(), cart.getProductName(),cart.getProductPrice(), counter);
 
                 Cart cart1 = new Cart(counter);
@@ -88,8 +89,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.cartDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 counter = Integer.parseInt(holder.productQty.getText().toString());
-                holder.productQty.setText("" + --counter);
+                if (counter > 1) {
+                    holder.productQty.setText("" + --counter);
+                }
 
                 Cart cart1 = new Cart(counter);
                 Retrofit retrofit = new Retrofit.Builder()

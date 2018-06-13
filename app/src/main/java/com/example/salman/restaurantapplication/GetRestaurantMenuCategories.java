@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -82,6 +83,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
                 MenuCategoriesAdapter menuCategoriesAdapter = new MenuCategoriesAdapter(GetRestaurantMenuCategories.this, restaurantCategoriesList);
                 recyclerView.setAdapter(menuCategoriesAdapter);
 
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
             }
 

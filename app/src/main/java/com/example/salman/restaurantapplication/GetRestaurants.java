@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import android.view.View;
 import android.widget.ImageView;
 
 
@@ -49,8 +50,8 @@ public class GetRestaurants extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ImageView imageView = findViewById(R.id.mainImage);
-       // dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-       // recyclerView.addItemDecoration(dividerItemDecoration);
+        // dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        // recyclerView.addItemDecoration(dividerItemDecoration);
 
 
         //ToolBar
@@ -83,6 +84,8 @@ public class GetRestaurants extends AppCompatActivity {
                 */
                 RestaurantAdapter restaurantAdapter = new RestaurantAdapter(GetRestaurants.this, restaurants);
                 recyclerView.setAdapter(restaurantAdapter);
+
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
             }
 

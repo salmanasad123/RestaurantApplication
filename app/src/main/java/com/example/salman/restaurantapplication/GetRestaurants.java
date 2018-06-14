@@ -96,7 +96,7 @@ public class GetRestaurants extends AppCompatActivity {
                 recyclerView.setAdapter(restaurantAdapter);
 
                 /**
-                 * Progress Bar will become unvisible when data is loaded, its like
+                 * Progress Bar will become invisible when data is loaded, its like
                  * a loading screen
                  */
                 findViewById(R.id.loadingPanel).setVisibility(View.GONE);

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -45,8 +46,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(final CartViewHolder holder, final int position) {
         final Cart cart = carts.get(position);
+
         holder.CartProductName.setText(cart.getProductName());
-        holder.CartProductPrice.setText(cart.getProductPrice().toString());
+        holder.CartProductPrice.setText("Rs " + cart.getProductPrice().toString());
         holder.productQty.setText(cart.getQuantity().toString());
 
 
@@ -131,17 +133,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         TextView CartProductName;
         TextView CartProductPrice;
         TextView productQty;
-        Button cartIncrease;
-        Button cartDecrease;
-        Button deleteProduct;
+        ImageButton cartIncrease;
+        ImageButton cartDecrease;
+        ImageButton deleteProduct;
 
         public CartViewHolder(View itemView) {
             super(itemView);
             CartProductName = itemView.findViewById(R.id.cartItemName);
             CartProductPrice = itemView.findViewById(R.id.cartItemPrice);
-            productQty = itemView.findViewById(R.id.btnShowQuantity);
-            cartIncrease = itemView.findViewById(R.id.btnCartIncrease);
-            cartDecrease = itemView.findViewById(R.id.btnCartDecrease);
+            productQty = itemView.findViewById(R.id.cartItemQuantity);
+            cartIncrease = itemView.findViewById(R.id.increaseQuantity);
+            cartDecrease = itemView.findViewById(R.id.cartDecrease);
             deleteProduct = itemView.findViewById(R.id.btnCartDelete);
 
         }

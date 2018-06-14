@@ -1,5 +1,6 @@
 package com.example.salman.restaurantapplication;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -32,6 +33,7 @@ public class CartActivity extends AppCompatActivity {
     DividerItemDecoration dividerItemDecoration;
     List<Cart> cartList;
     TextView cartTotal;
+
 
 
     @Override
@@ -84,6 +86,13 @@ public class CartActivity extends AppCompatActivity {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(GetRestaurantIDEvent event) {
         RestaurantIDFromEventBus = event.getValue();
+    }
+
+    public int getTotal()
+    {
+
+        return 1;
+
     }
 
 }

@@ -57,7 +57,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
     @Override
     public void onBindViewHolder(productsViewHolder holder, final int position) {
         final GetMenuProducts products = getMenuProducts.get(position);
-        Log.d(TAG, "onBindViewHolder: " + products.getProductName() + products.getPrice());
+        Log.d(TAG, "onBindViewHolder: " + products.getProductName() + " " + products.getPrice());
 
         holder.productName.setText(products.getProductName());
         holder.productPrice.setText("PKR  " + products.getPrice().toString());
@@ -65,7 +65,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
         holder.addProductbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(showMenuProducts, "Item Added To Cart" + products.getProductName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(showMenuProducts, "Item Added To Cart  " + products.getProductName(), Toast.LENGTH_SHORT).show();
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("http://192.168.1.5:8000")

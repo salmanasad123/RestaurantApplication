@@ -1,5 +1,6 @@
 package com.example.salman.restaurantapplication;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,12 +24,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Salman on 6/10/2018.
  */
 
+
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     private static final String TAG = "MTAG";
     Integer counter = 1;
+    Integer total = 0;
+
+
     List<Cart> carts;
     CartActivity activity;
+
+    SharedPreferences sharedPreferences;
+
 
     public CartAdapter(CartActivity cartActivity, List<Cart> cartList) {
         this.activity = cartActivity;
@@ -52,6 +60,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.productQty.setText(cart.getQuantity().toString());
 
 
+        total = total + carts.get(position).getProductPrice();
+
+
+        Log.d(TAG, "onBindViewHolder: TOTAL AMOUNT " + total);
+
+
         holder.cartIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +76,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     holder.productQty.setText("" + ++counter);
                 }
                 //Cart cart1 = new Cart(cart.getCartItemID(), cart.getProductID(), cart.getProductName(),cart.getProductPrice(), counter);
+
+
+                total = total + cart.getProductPrice();
+                Log.d(TAG, "onClick: " + total);
+
 
                 Cart cart1 = new Cart(counter);
 
@@ -95,7 +114,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 counter = Integer.parseInt(holder.productQty.getText().toString());
                 if (counter > 1) {
                     holder.productQty.setText("" + --counter);
+
+                    total = total - cart.getProductPrice();
+                    Log.d(TAG, "onClick: " + total);
                 }
+
 
                 Cart cart1 = new Cart(counter);
                 Retrofit retrofit = new Retrofit.Builder()
@@ -123,6 +146,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.deleteProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("http://192.168.1.5:8000")
@@ -179,4 +203,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         }
     }
+
+
 }

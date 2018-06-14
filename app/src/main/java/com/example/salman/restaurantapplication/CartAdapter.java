@@ -120,6 +120,35 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
+        holder.deleteProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://192.168.1.5:8000")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+                Call<Cart> cartCall = apiInterface.deleteItemFromCart(cart.getCartItemID());
+                cartCall.enqueue(new Callback<Cart>() {
+                    @Override
+                    public void onResponse(Call<Cart> call, Response<Cart> response) {
+                        Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Cart> call, Throwable t) {
+                        Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
+                    }
+                });
+
+
+                carts.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
 
     }
 

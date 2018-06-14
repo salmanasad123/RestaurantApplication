@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -30,12 +31,15 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     DividerItemDecoration dividerItemDecoration;
     List<Cart> cartList;
+    TextView cartTotal;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+
 
         cartRecyclerView = findViewById(R.id.CartRecyclerView);
         layoutManager = new LinearLayoutManager(this);
@@ -62,6 +66,7 @@ public class CartActivity extends AppCompatActivity {
                 cartList = response.body();
                 CartAdapter cartAdapter = new CartAdapter(CartActivity.this, cartList);
                 cartRecyclerView.setAdapter(cartAdapter);
+
 
             }
 

@@ -1,28 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CartInfoLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="com.example.salman.restaurantapplication.CartActivity">
+    android:layout_height="match_parent"
+    android:background="#e1e1e1">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/CartRecyclerView"
+    <TextView
+        android:id="@+id/cartProductNames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:text="Products"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cartProductQuantities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="QTY"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cartProductPrices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="12dp"
+        android:text="Price"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cartConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/cartProductNames"
+        android:background="#FFFFFF"
+
+        tools:context="com.example.salman.restaurantapplication.CartActivity">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/CartRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/CartTotalRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/cartConstraintLayout"
+        android:layout_marginTop="13dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/CartSubTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="11dp"
+            android:layout_marginTop="18dp"
+            android:text="Amount"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/CartSubTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/CartSubTotalAmount"
+            android:layout_alignBottom="@+id/CartSubTotalAmount"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="12dp"
+            android:text="Sub Total"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/CartDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/CartSubTotal"
+            android:layout_below="@+id/CartSubTotalAmount"
+            android:layout_marginTop="22dp"
+            android:text="Discount"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/CartDiscountAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/CartDiscount"
+            android:layout_alignBottom="@+id/CartDiscount"
+            android:layout_alignStart="@+id/CartSubTotalAmount"
+            android:text="Amount"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/CartTotalBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/CartDiscount"
+            android:layout_below="@+id/CartDiscount"
+            android:layout_marginTop="32dp"
+            android:text="Total Bill"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/CartTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/CartTotalBill"
+            android:layout_alignBottom="@+id/CartTotalBill"
+            android:layout_alignEnd="@+id/CartDiscountAmount"
+            android:text="Amount"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 
-    </android.support.v7.widget.RecyclerView>
-
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

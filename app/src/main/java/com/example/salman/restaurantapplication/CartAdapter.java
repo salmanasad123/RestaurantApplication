@@ -165,6 +165,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         ImageButton cartIncrease;
         ImageButton cartDecrease;
         ImageButton deleteProduct;
+        TextView cartTotal;
 
         public CartViewHolder(View itemView) {
             super(itemView);
@@ -174,6 +175,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             cartIncrease = itemView.findViewById(R.id.increaseQuantity);
             cartDecrease = itemView.findViewById(R.id.cartDecrease);
             deleteProduct = itemView.findViewById(R.id.btnCartDelete);
+
 
         }
     }

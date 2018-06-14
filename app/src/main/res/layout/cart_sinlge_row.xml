@@ -10,9 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/cartItemPrice"
@@ -22,14 +23,14 @@
         android:layout_toStartOf="@+id/btnCartDelete"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/cartItemQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/cartItemName"
-        android:layout_marginEnd="17dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="24dp"
         android:layout_toStartOf="@+id/cartDecrease"
         android:text="qty"
         android:textColor="#000000"
@@ -53,7 +54,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="15dp"
         android:layout_toStartOf="@+id/cartItemQuantity"
         android:src="@drawable/ic_plus"
         android:textColor="#000000" />
@@ -65,7 +66,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="31dp"
         android:layout_toStartOf="@+id/cartItemPrice"
         android:src="@drawable/ic_minus"
         android:text="-" />

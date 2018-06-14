@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">RestaurantApplication</string>
-    <string name="restaurantName"><u>Restaurants</u> </string>
+    <string name="restaurantName"><u><b>Restaurants</b></u> </string>
+    <string name="cartItemNames"><u>Products</u></string>
+    <string name="cartItemQuantity"><b>Qty</b></string>
+    <string name="cartItemsPrices"><u><b>Price</b></u></string>
 
 </resources>

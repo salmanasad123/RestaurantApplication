@@ -7,16 +7,20 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -36,9 +40,11 @@ public class GetRestaurants extends AppCompatActivity {
     List<Restaurant> restaurants;
     Gson gson;
     android.support.v7.widget.Toolbar toolbar;
+    EditText editText;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     DividerItemDecoration dividerItemDecoration;
+    RestaurantAdapter restaurantAdapter;
 
 
     // ACTIVITY
@@ -55,6 +61,7 @@ public class GetRestaurants extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ImageView imageView = findViewById(R.id.mainImage);
+        editText = findViewById(R.id.SearchEditText);
         toolbar = findViewById(R.id.getRestaurantToolbar);
 
         setSupportActionBar(toolbar);
@@ -94,9 +101,7 @@ public class GetRestaurants extends AppCompatActivity {
                 });
 
                 */
-
-
-                RestaurantAdapter restaurantAdapter = new RestaurantAdapter(GetRestaurants.this, restaurants);
+                restaurantAdapter = new RestaurantAdapter(GetRestaurants.this, restaurants);
                 recyclerView.setAdapter(restaurantAdapter);
 
                 /**
@@ -113,8 +118,36 @@ public class GetRestaurants extends AppCompatActivity {
             }
         });
 
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
+
+
     }
 
+    public void filter(String text) {
+        ArrayList<Restaurant> filteredList = new ArrayList<>();
+        for (Restaurant restaurant : restaurants) {
+            if (restaurant.getRestaurantName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(restaurant);
+            }
+        }
+        restaurantAdapter.filterList(filteredList);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

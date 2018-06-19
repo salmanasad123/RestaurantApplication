@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.http.GET;
@@ -113,6 +114,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @Override
     public int getItemCount() {
         return restaurants.size();
+    }
+
+    public void filterList(ArrayList<Restaurant> filteredList) {
+        restaurants = filteredList;
+        notifyDataSetChanged();
     }
 
     /**

@@ -13,6 +13,14 @@
 
     </include>
 
+    <EditText
+        android:id="@+id/SearchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Restaurants"
+        android:layout_below="@+id/getRestaurantToolbar"
+        />
+
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="match_parent"
@@ -26,14 +34,11 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:layout_marginTop="55dp"
-        android:layout_below="@+id/getRestaurantToolbar"
         android:id="@+id/mainImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/SearchEditText"
         android:src="@drawable/mainscreenimg" />
 
 
@@ -57,6 +62,8 @@
         android:id="@+id/loadingPanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:gravity="center">
 
         <ProgressBar

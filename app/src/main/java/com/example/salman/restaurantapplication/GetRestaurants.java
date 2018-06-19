@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -53,7 +55,9 @@ public class GetRestaurants extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ImageView imageView = findViewById(R.id.mainImage);
+        toolbar = findViewById(R.id.getRestaurantToolbar);
 
+        setSupportActionBar(toolbar);
         // dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         // recyclerView.addItemDecoration(dividerItemDecoration);
 
@@ -112,7 +116,6 @@ public class GetRestaurants extends AppCompatActivity {
     }
 
 
-/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -128,7 +131,7 @@ public class GetRestaurants extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-*/
+
 
 }
 

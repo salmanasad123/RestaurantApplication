@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,10 +32,13 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     List<RestaurantCategories> restaurantCategoriesList;
 
+
     public int getRestaurantID;
     String getRestaurantImage;
+    CharSequence getRestaurantName;
     ImageView imageView;
     CardView cardView;
+    Toolbar MenuCategoriesToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +50,16 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         imageView = findViewById(R.id.menuCategorybackgroundImage);
         cardView = findViewById(R.id.categoriesCardView);
+        MenuCategoriesToolBar = findViewById(R.id.menuCategoriesToolbar);
+        MenuCategoriesToolBar.setTitle("Menu Categories");
+
 
         /**
          * Restaurant ID received from RestaurantActivity
          */
 
         getRestaurantImage = getIntent().getStringExtra("myImageString");
+        getRestaurantName = getIntent().getStringExtra("myNameString");
         getRestaurantID = getIntent().getIntExtra("myObjectString", 0);
 
 

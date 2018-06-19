@@ -42,6 +42,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.thoughtbot:expandablerecyclerview:1.3'
     compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
 
 
 }

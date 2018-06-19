@@ -70,7 +70,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
         //   total = total + carts.get(position).getProductPrice();
-        // Log.d(TAG, "onBindViewHolder: TOTAL AMOUNT " + total);
+        Log.d(TAG, "onBindViewHolder: TOTAL AMOUNT " + total);
 
 
         CartTotalEvent cartTotalEvent = new CartTotalEvent(total);

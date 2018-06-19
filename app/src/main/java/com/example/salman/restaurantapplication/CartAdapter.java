@@ -1,6 +1,7 @@
 package com.example.salman.restaurantapplication;
 
 import android.content.SharedPreferences;
+import android.icu.util.IslamicCalendar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -65,6 +67,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         Log.d(TAG, "onBindViewHolder: TOTAL AMOUNT " + total);
 
+        CartTotalEvent cartTotalEvent = new CartTotalEvent(total);
+        EventBus.getDefault().post(cartTotalEvent);
+
 
         holder.cartIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 Cart cart1 = new Cart(counter);
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.5:8000")
+                        .baseUrl("http://192.168.1.2:8000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -122,7 +127,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 Cart cart1 = new Cart(counter);
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.5:8000")
+                        .baseUrl("http://192.168.1.2:8000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -149,7 +154,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.5:8000")
+                        .baseUrl("http://192.168.1.2:8000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -189,7 +194,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         ImageButton cartIncrease;
         ImageButton cartDecrease;
         ImageButton deleteProduct;
-        TextView cartTotal;
+
 
         public CartViewHolder(View itemView) {
             super(itemView);
@@ -202,6 +207,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
         }
+
+
     }
 
 

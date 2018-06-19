@@ -48,7 +48,7 @@ public class ShowMenuProducts extends AppCompatActivity {
         EventBus.getDefault().register(this);
 
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.5:8000")
+                .baseUrl("http://192.168.1.2:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

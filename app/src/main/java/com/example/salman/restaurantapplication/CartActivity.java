@@ -27,13 +27,15 @@ public class CartActivity extends AppCompatActivity {
     private static final String TAG = "MTAG";
 
     public int RestaurantIDFromEventBus;
-
+    // public Integer Total;
     RecyclerView cartRecyclerView;
     RecyclerView.LayoutManager layoutManager;
     DividerItemDecoration dividerItemDecoration;
     List<Cart> cartList;
-    TextView cartTotal;
-
+    TextView cartTotalAmount;
+    TextView cartSubTotalAmount;
+    TextView cartTaxAmount;
+    CartAdapter cartAdapter;
 
 
     @Override
@@ -42,18 +44,20 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
 
-
         cartRecyclerView = findViewById(R.id.CartRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         cartRecyclerView.setLayoutManager(layoutManager);
         dividerItemDecoration = new DividerItemDecoration(cartRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         cartRecyclerView.addItemDecoration(dividerItemDecoration);
 
+        cartSubTotalAmount = findViewById(R.id.CartSubTotalAmount);
+        cartTaxAmount = findViewById(R.id.CartTaxAmount);
+        cartTotalAmount = findViewById(R.id.CartTotalAmount);
 
         EventBus.getDefault().register(this);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.5:8000")
+                .baseUrl("http://192.168.1.2:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -83,15 +87,20 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(GetRestaurantIDEvent event) {
         RestaurantIDFromEventBus = event.getValue();
     }
 
-    public int getTotal()
-    {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onevent(CartTotalEvent cartTotalEvent) {
+        double Total = cartTotalEvent.getTotal();
+        cartSubTotalAmount.setText(Total + "");
+        cartTaxAmount.setText("17%");
+        Total += Total * 0.17;
 
-        return 1;
+        cartTotalAmount.setText(Total + "");
 
     }
 

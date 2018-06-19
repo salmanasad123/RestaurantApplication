@@ -107,21 +107,21 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/CartDiscount"
+            android:id="@+id/CartTax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/CartSubTotal"
             android:layout_below="@+id/CartSubTotalAmount"
             android:layout_marginTop="22dp"
-            android:text="Discount"
+            android:text="Tax"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/CartDiscountAmount"
+            android:id="@+id/CartTaxAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/CartDiscount"
-            android:layout_alignBottom="@+id/CartDiscount"
+            android:layout_alignBaseline="@+id/CartTax"
+            android:layout_alignBottom="@+id/CartTax"
             android:layout_alignStart="@+id/CartSubTotalAmount"
             android:text="Amount"
             android:textSize="16sp" />
@@ -130,8 +130,8 @@
             android:id="@+id/CartTotalBill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/CartDiscount"
-            android:layout_below="@+id/CartDiscount"
+            android:layout_alignStart="@+id/CartTax"
+            android:layout_below="@+id/CartTax"
             android:layout_marginTop="32dp"
             android:text="Total Bill"
             android:textColor="#000000"
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/CartTotalBill"
             android:layout_alignBottom="@+id/CartTotalBill"
-            android:layout_alignEnd="@+id/CartDiscountAmount"
+            android:layout_alignEnd="@+id/CartTaxAmount"
             android:text="Amount"
             android:textColor="#000000"
             android:textSize="18sp"

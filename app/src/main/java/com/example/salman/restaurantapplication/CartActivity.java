@@ -27,7 +27,7 @@ public class CartActivity extends AppCompatActivity {
     private static final String TAG = "MTAG";
 
     public int RestaurantIDFromEventBus;
-    // public Integer Total;
+    double Total;
     RecyclerView cartRecyclerView;
     RecyclerView.LayoutManager layoutManager;
     DividerItemDecoration dividerItemDecoration;
@@ -36,6 +36,7 @@ public class CartActivity extends AppCompatActivity {
     TextView cartSubTotalAmount;
     TextView cartTaxAmount;
     CartAdapter cartAdapter;
+    SharedPreferences preferences;
 
 
     @Override
@@ -95,13 +96,22 @@ public class CartActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onevent(CartTotalEvent cartTotalEvent) {
-        double Total = cartTotalEvent.getTotal();
-        cartSubTotalAmount.setText(Total + "");
-        cartTaxAmount.setText("17%");
-        Total += Total * 0.17;
 
-        cartTotalAmount.setText(Total + "");
+        Total = cartTotalEvent.getTotal();
 
+        if (Total >= 0) {
+            cartSubTotalAmount.setText(Total + "");
+            cartTaxAmount.setText("17%");
+            Total += Total * 0.17;
+            cartTotalAmount.setText(Total + "");
+        }
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed: ");
+        super.onBackPressed();
+
+    }
 }
+

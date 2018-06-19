@@ -1,7 +1,10 @@
 package com.example.salman.restaurantapplication;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.icu.util.IslamicCalendar;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,8 +39,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     List<Cart> carts;
     CartActivity activity;
-
-    SharedPreferences sharedPreferences;
+    SharedPreferences preferences;
 
 
     public CartAdapter(CartActivity cartActivity, List<Cart> cartList) {
@@ -57,21 +59,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(final CartViewHolder holder, final int position) {
         final Cart cart = carts.get(position);
 
+
         holder.CartProductName.setText(cart.getProductName());
         holder.CartProductPrice.setText("Rs " + cart.getProductPrice().toString());
         holder.productQty.setText(cart.getQuantity().toString());
 
 
-        total = total + carts.get(position).getProductPrice();
+        Integer qty = Integer.valueOf(holder.productQty.getText().toString());
+        total = total + (qty * carts.get(position).getProductPrice());
 
 
-        Log.d(TAG, "onBindViewHolder: TOTAL AMOUNT " + total);
+        //   total = total + carts.get(position).getProductPrice();
+        // Log.d(TAG, "onBindViewHolder: TOTAL AMOUNT " + total);
+
 
         CartTotalEvent cartTotalEvent = new CartTotalEvent(total);
         EventBus.getDefault().post(cartTotalEvent);
 
 
-        holder.cartIncrease.setOnClickListener(new View.OnClickListener() {
+        holder.cartIncrease.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View view) {
 
@@ -84,6 +92,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
                 total = total + cart.getProductPrice();
+
+                EventBus.getDefault().post(new CartTotalEvent(total));
+
+
                 Log.d(TAG, "onClick: " + total);
 
 
@@ -112,7 +124,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-        holder.cartDecrease.setOnClickListener(new View.OnClickListener() {
+
+        holder.cartDecrease.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View view) {
 
@@ -121,6 +136,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     holder.productQty.setText("" + --counter);
 
                     total = total - cart.getProductPrice();
+                    EventBus.getDefault().post(new CartTotalEvent(total));
                     Log.d(TAG, "onClick: " + total);
                 }
 
@@ -148,7 +164,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-        holder.deleteProduct.setOnClickListener(new View.OnClickListener() {
+        holder.deleteProduct.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View view) {
 
@@ -210,6 +228,5 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
     }
-
 
 }

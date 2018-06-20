@@ -78,4 +78,12 @@ public interface ApiInterface {
     @DELETE("api/cartitems/{id}")
     Call<Cart> deleteItemFromCart(@Path("id") int id);
 
+    @POST("api/feedback")
+    @FormUrlEncoded
+    Call<Feedback> sendFeedback(@Field("Rating") int Rating,
+                                @Field("comment") String comment,
+                                @Field("RestaurantID") int RestaurantID
+
+    );
+
 }

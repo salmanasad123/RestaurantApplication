@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/restaurantName"
                 android:layout_toEndOf="@+id/restaurantImage"
-                android:numStars="5"
+                android:numStars="0"
                 android:paddingLeft="10dp"
                 android:stepSize="1" />
 

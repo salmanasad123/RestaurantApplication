@@ -74,10 +74,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
                 .resize(250, 250)
                 .into(holder.restaurantImage);
 
-        //Convert Each Object to Json to send to another Activity
-        // Creating Gson Object
-        gson = new Gson();
-
 
         /**
          * Recycler View Item Clicked
@@ -114,6 +110,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GetRestaurantIDEvent getRestaurantIDEvent = new GetRestaurantIDEvent(restaurant.getRestaurantID());
+                EventBus.getDefault().postSticky(getRestaurantIDEvent);
                 String str = gson.toJson(restaurants.get(position));
                 Intent intent = new Intent(context, RestaurantDetailsActivity.class);
                 intent.putExtra("MyObjString", str);

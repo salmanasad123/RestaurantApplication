@@ -85,7 +85,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
 
                     @Override
                     public void onFailure(Call<Cart> call, Throwable t) {
-
+                        Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
                     }
                 });
 

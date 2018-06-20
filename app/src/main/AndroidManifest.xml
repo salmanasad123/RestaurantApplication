@@ -18,11 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GetRestaurants" />
+        <activity
+            android:name=".GetRestaurants"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SortActivity" />
         <activity android:name=".GetRestaurantMenuCategories" />
         <activity android:name=".ShowMenuProducts" />
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartActivity" />
+        <activity android:name=".RestaurantDetailsActivity"></activity>
     </application>
 
 </manifest>

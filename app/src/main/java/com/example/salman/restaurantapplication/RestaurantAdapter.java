@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -101,10 +102,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
                 // String restaurantGson = gson.toJson(restaurants.get(position));
                 Intent intent = new Intent(context, GetRestaurantMenuCategories.class);
                 intent.putExtra("myObjectString", restaurant.getRestaurantID());
-                intent.putExtra("myNameString", restaurant.getRestaurantName());
                 intent.putExtra("myImageString", restaurant.getLink());// passing restaurant id to other activity
                 context.startActivity(intent);
 
+
+            }
+        });
+
+        holder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
@@ -131,6 +138,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         TextView restaurantName;
         RatingBar restaurantRating;
         CardView cardView;
+        ImageButton imageButton;
 
 
         public RestaurantViewHolder(View itemView) {
@@ -140,6 +148,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             restaurantName = itemView.findViewById(R.id.restaurantName);
             restaurantImage = itemView.findViewById(R.id.restaurantImage);
             restaurantRating = itemView.findViewById(R.id.restaurant_rating);
+            imageButton = itemView.findViewById(R.id.restaurantInfoButton);
 
         }
     }

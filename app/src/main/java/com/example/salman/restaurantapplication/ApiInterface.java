@@ -27,6 +27,8 @@ public interface ApiInterface {
     @GET("api/restaurants")
     Call<List<Restaurant>> getRestaurants();
 
+   // @GET("api/restaurantsfeedback")
+   // Call<List<Restaurant>> getRestaurants();
 
     @GET("api/restaurant/categories")
     Call<List<RestaurantCategories>> getRestaurantCategories();

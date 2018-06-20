@@ -109,9 +109,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             }
         });
 
+
+        gson = new Gson();
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String str = gson.toJson(restaurants.get(position));
+                Intent intent = new Intent(context, RestaurantDetailsActivity.class);
+                intent.putExtra("MyObjString", str);
+                context.startActivity(intent);
 
             }
         });

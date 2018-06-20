@@ -43,16 +43,18 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/restaurantName"
                 android:layout_toEndOf="@+id/restaurantImage"
-                android:paddingLeft="10dp" />
+                android:numStars="5"
+                android:paddingLeft="10dp"
+                android:stepSize="1" />
 
             <ImageButton
-                android:background="#ffffff"
                 android:id="@+id/restaurantInfoButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="13dp"
+                android:background="#ffffff"
                 app:srcCompat="@drawable/ic_info" />
         </RelativeLayout>
 

@@ -23,6 +23,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     TextView restaurantPhone;
     RatingBar restaurantRatingBar;
     Button OrderFood;
+    Button GiveFeedback;
     ImageButton restaurantFb;
 
     @Override
@@ -35,6 +36,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         restaurantRatingBar = findViewById(R.id.RestaurantratingBar);
         OrderFood = findViewById(R.id.Orderbutton);
         restaurantFb = findViewById(R.id.btnFacebook);
+        GiveFeedback = findViewById(R.id.btnGiveFeedback);
 
         /**
          *
@@ -52,6 +54,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         restaurantPhone.setText(restaurant.getRestaurantPhone().toString());
         restaurantRatingBar.setRating(restaurant.getRating());
 
+
         OrderFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +71,13 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             }
         });
 
+        GiveFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RestaurantDetailsActivity.this, FeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

@@ -27,8 +27,8 @@ public interface ApiInterface {
     @GET("api/restaurants")
     Call<List<Restaurant>> getRestaurants();
 
-   // @GET("api/restaurantsfeedback")
-   // Call<List<Restaurant>> getRestaurants();
+    // @GET("api/restaurantsfeedback")
+    // Call<List<Restaurant>> getRestaurants();
 
     @GET("api/restaurant/categories")
     Call<List<RestaurantCategories>> getRestaurantCategories();
@@ -87,5 +87,8 @@ public interface ApiInterface {
                                 @Field("RestaurantID") int RestaurantID
 
     );
+
+    @GET("api/feedback/{id}")
+    Call<List<Feedback>> getFeedback(@Path("id") int id);
 
 }

@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,11 +16,24 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RestaurantDetailsActivity extends AppCompatActivity {
+
+    private static final String TAG = "MTAG";
 
     Gson gson;
     String target;
     Restaurant restaurant;
+    int RestaurantIDfromIntent;
 
     TextView restaurantName;
     TextView restaurantAddress;
@@ -25,6 +42,11 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     Button OrderFood;
     Button GiveFeedback;
     ImageButton restaurantFb;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    CardView cardView;
+    List<Feedback> feedbackList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +59,14 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         OrderFood = findViewById(R.id.Orderbutton);
         restaurantFb = findViewById(R.id.btnFacebook);
         GiveFeedback = findViewById(R.id.btnGiveFeedback);
+
+        recyclerView = findViewById(R.id.feedbacksRecyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        cardView = findViewById(R.id.FeedbackCardView);
+
+        RestaurantIDfromIntent = getIntent().getIntExtra("MyObjectID", 0);
+
 
         /**
          *
@@ -79,5 +109,34 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             }
         });
 
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.4:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        Call<List<Feedback>> listCall = apiInterface.getFeedback(RestaurantIDfromIntent);
+
+        listCall.enqueue(new Callback<List<Feedback>>() {
+            @Override
+            public void onResponse(Call<List<Feedback>> call, Response<List<Feedback>> response) {
+
+                Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+                feedbackList = response.body();
+
+                FeedbackAdapter feedbackAdapter = new FeedbackAdapter(RestaurantDetailsActivity.this, feedbackList);
+                recyclerView.setAdapter(feedbackAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Feedback>> call, Throwable t) {
+
+                Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
+            }
+        });
+
     }
+
+
 }

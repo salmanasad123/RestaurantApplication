@@ -115,6 +115,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
                 String str = gson.toJson(restaurants.get(position));
                 Intent intent = new Intent(context, RestaurantDetailsActivity.class);
                 intent.putExtra("MyObjString", str);
+                intent.putExtra("MyObjectID", restaurant.getRestaurantID());
                 context.startActivity(intent);
 
             }

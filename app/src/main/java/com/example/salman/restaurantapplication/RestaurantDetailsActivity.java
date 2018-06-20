@@ -55,7 +55,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         OrderFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 Intent intent = new Intent(RestaurantDetailsActivity.this, GetRestaurantMenuCategories.class);
                 startActivity(intent);
             }

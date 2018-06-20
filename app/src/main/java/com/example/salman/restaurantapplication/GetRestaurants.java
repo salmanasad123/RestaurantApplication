@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 import com.google.gson.Gson;
@@ -47,6 +48,7 @@ public class GetRestaurants extends AppCompatActivity {
     RestaurantAdapter restaurantAdapter;
 
 
+
     // ACTIVITY
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class GetRestaurants extends AppCompatActivity {
         recyclerView = findViewById(R.id.showRestaurants);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+
         ImageView imageView = findViewById(R.id.mainImage);
         editText = findViewById(R.id.SearchEditText);
         toolbar = findViewById(R.id.getRestaurantToolbar);
@@ -77,7 +81,7 @@ public class GetRestaurants extends AppCompatActivity {
          */
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.4:8000")
+                .baseUrl("http://192.168.1.3:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -109,6 +113,7 @@ public class GetRestaurants extends AppCompatActivity {
                  * a loading screen
                  */
                 findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
 
             }
 

@@ -94,6 +94,7 @@ public class CartActivity extends AppCompatActivity {
         RestaurantIDFromEventBus = event.getValue();
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onevent(CartTotalEvent cartTotalEvent) {
 

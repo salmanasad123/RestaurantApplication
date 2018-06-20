@@ -13,12 +13,16 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     Restaurant restaurant;
 
     TextView restaurantName;
+    TextView restaurantAddress;
+    TextView restaurantPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
         restaurantName = findViewById(R.id.tvRestaurantName);
+        restaurantAddress = findViewById(R.id.tvRestaurantAddress);
+        restaurantPhone = findViewById(R.id.tvRestaurantPhone);
 
 
         gson = new Gson();
@@ -26,6 +30,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         restaurant = gson.fromJson(target, Restaurant.class);
 
         restaurantName.setText(restaurant.getRestaurantName());
+        restaurantAddress.setText(restaurant.getRestaurantAddress());
+        restaurantPhone.setText(restaurant.getRestaurantPhone().toString());
 
 
     }

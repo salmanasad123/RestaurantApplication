@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class CartActivity extends AppCompatActivity {
     TextView cartTotalAmount;
     TextView cartSubTotalAmount;
     TextView cartTaxAmount;
+    Toolbar toolbar;
     CartAdapter cartAdapter;
     SharedPreferences preferences;
 
@@ -51,9 +53,12 @@ public class CartActivity extends AppCompatActivity {
         dividerItemDecoration = new DividerItemDecoration(cartRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         cartRecyclerView.addItemDecoration(dividerItemDecoration);
 
+
         cartSubTotalAmount = findViewById(R.id.CartSubTotalAmount);
         cartTaxAmount = findViewById(R.id.CartTaxAmount);
         cartTotalAmount = findViewById(R.id.CartTotalAmount);
+        toolbar = findViewById(R.id.cartActivityToolbar);
+        setSupportActionBar(toolbar);
 
         EventBus.getDefault().register(this);
 

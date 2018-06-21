@@ -92,7 +92,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="11dp"
             android:layout_marginTop="18dp"
-            android:text="Amount"
+            android:text="0"
             android:textSize="16sp" />
 
         <TextView
@@ -123,7 +123,7 @@
             android:layout_alignBaseline="@+id/CartTax"
             android:layout_alignBottom="@+id/CartTax"
             android:layout_alignStart="@+id/CartSubTotalAmount"
-            android:text="Amount"
+            android:text="0"
             android:textSize="16sp" />
 
         <TextView
@@ -145,7 +145,7 @@
             android:layout_alignBaseline="@+id/CartTotalBill"
             android:layout_alignBottom="@+id/CartTotalBill"
             android:layout_alignEnd="@+id/CartTaxAmount"
-            android:text="Amount"
+            android:text="0"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />

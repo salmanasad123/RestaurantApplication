@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     public void onBindViewHolder(FeedbackViewHolder holder, int position) {
         Feedback feedback = feedbacks.get(position);
         holder.tvFeedback.setText(feedback.getComment());
+        holder.ratingBar.setRating(feedback.getRating());
 
     }
 
@@ -45,10 +47,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     public class FeedbackViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvFeedback;
+        RatingBar ratingBar;
 
         public FeedbackViewHolder(View itemView) {
             super(itemView);
             tvFeedback = itemView.findViewById(R.id.tvFeedBack);
+            ratingBar = itemView.findViewById(R.id.feedbackRatingBar);
         }
     }
 }

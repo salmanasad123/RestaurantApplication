@@ -111,7 +111,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.4:8000")
+                .baseUrl("http://192.168.1.6:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

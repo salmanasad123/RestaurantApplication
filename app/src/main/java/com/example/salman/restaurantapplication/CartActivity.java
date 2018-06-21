@@ -58,7 +58,7 @@ public class CartActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.2:8000")
+                .baseUrl("http://192.168.1.6:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

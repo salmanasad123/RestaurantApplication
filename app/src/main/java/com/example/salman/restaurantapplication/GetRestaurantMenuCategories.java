@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -41,6 +43,19 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
     Toolbar MenuCategoriesToolBar;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_categories, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(GetRestaurantMenuCategories.this,CartActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_restaurant_menu_categories);
@@ -52,6 +67,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         cardView = findViewById(R.id.categoriesCardView);
         MenuCategoriesToolBar = findViewById(R.id.menuCategoriesToolbar);
         MenuCategoriesToolBar.setTitle("Menu Categories");
+        setSupportActionBar(MenuCategoriesToolBar);
 
 
         /**

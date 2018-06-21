@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -31,7 +34,20 @@ public class ShowMenuProducts extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     Button viewCart;
+    Toolbar menuProductsToolbar;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_categories, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(ShowMenuProducts.this, CartActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +58,10 @@ public class ShowMenuProducts extends AppCompatActivity {
         recyclerView = findViewById(R.id.showProducts);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        menuProductsToolbar = findViewById(R.id.menuProductsToolbar);
+        menuProductsToolbar.setTitle("Menu Items");
+        setSupportActionBar(menuProductsToolbar);
 
         getCategoryiD = getIntent().getIntExtra("myCategoryID", 0);
 

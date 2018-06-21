@@ -91,4 +91,16 @@ public interface ApiInterface {
     @GET("api/feedback/{id}")
     Call<List<Feedback>> getFeedback(@Path("id") int id);
 
+    @POST("api/register")
+    @FormUrlEncoded
+    Call<Customer> registerCustomer(@Field("Name") String Name,
+                                    @Field("CustomerEmail") String CustomerEmail,
+                                    @Field("CustomerPhone") int CustomerPhone,
+                                    @Field("CustomerAddress") String CustomerAddress,
+                                    @Field("City") String City,
+                                    @Field("Password") String Password);
+
+    @GET("api/login")
+    Call<Customer> getCustomer();
+
 }

@@ -26,7 +26,9 @@
         <activity android:name=".ShowMenuProducts" />
         <activity android:name=".CartActivity" />
         <activity android:name=".RestaurantDetailsActivity" />
-        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

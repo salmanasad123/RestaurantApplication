@@ -2,6 +2,7 @@ package com.example.salman.restaurantapplication;
 
 import android.content.Entity;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,15 @@ public class LoginActivity extends AppCompatActivity {
         btngoto = findViewById(R.id.buttonGoTo);
 
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,10 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 getPassword = inputPassword.getText().toString().trim();
 
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.3:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                Retrofit retrofit = RetrofitClient.getClient();
 
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
@@ -68,9 +75,19 @@ public class LoginActivity extends AppCompatActivity {
                 listCall.enqueue(new Callback<List<Customer>>() {
                     @Override
                     public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
+
+
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
 
                         Log.d(TAG, "onResponse: " + response.body());
+
+                        if (!response.body().isEmpty()) {
+
+                            Intent intent = new Intent(LoginActivity.this, GetRestaurants.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Credentials Do Not Match", Toast.LENGTH_SHORT).show();
+                        }
 
 
                     }
@@ -78,29 +95,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<List<Customer>> call, Throwable t) {
                         Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
+
+
                     }
+
                 });
-
-                btnSignUp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-
-                btngoto.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(LoginActivity.this, GetRestaurants.class);
-                        startActivity(intent);
-                    }
-                });
-
 
             }
+
         });
+
     }
 }
 

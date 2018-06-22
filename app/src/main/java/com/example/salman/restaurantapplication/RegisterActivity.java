@@ -45,11 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.4:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
+                Retrofit retrofit = RetrofitClient.getClient();
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
 

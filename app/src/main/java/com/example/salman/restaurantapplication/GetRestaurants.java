@@ -80,11 +80,7 @@ public class GetRestaurants extends AppCompatActivity {
          * RETROFIT INSTANCE
          */
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6:8000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
+        Retrofit retrofit = RetrofitClient.getClient();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         final Call<List<Restaurant>> restaurantList = apiInterface.getRestaurants();
         restaurantList.enqueue(new Callback<List<Restaurant>>() {

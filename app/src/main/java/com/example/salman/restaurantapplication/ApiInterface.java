@@ -100,7 +100,12 @@ public interface ApiInterface {
                                     @Field("City") String City,
                                     @Field("Password") String Password);
 
-    @GET("api/login")
-    Call<Customer> getCustomer();
+
+
+    @POST("api/login")
+    @FormUrlEncoded
+    Call<List<Customer>> postLoginData(@Field("CustomerEmail") String CustomerEmail,
+                                 @Field("Password") String Password
+    );
 
 }

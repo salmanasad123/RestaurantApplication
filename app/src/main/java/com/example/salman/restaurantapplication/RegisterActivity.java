@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
 
-                Retrofit retrofit = RetrofitClient.getClient();
+                final Retrofit retrofit = RetrofitClient.getClient();
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
 
@@ -99,22 +99,23 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
-                        if (response.isSuccessful())
-                        {
+
+                        Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+
+                        if (response.isSuccessful()) {
                             Intent intent = new Intent(RegisterActivity.this, GetRestaurants.class);
                             startActivity(intent);
-                        }
-                        else {
-                            Toast.makeText(RegisterActivity.this, "Failed to Register", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Failed to Register", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Customer> call, Throwable t) {
                         Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
+
                     }
                 });
-
 
 
             }

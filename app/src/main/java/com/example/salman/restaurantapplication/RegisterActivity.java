@@ -3,10 +3,12 @@ package com.example.salman.restaurantapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "MTAG";
 
+
     EditText etName;
     EditText etEmail;
     EditText etPhone;
@@ -25,6 +28,15 @@ public class RegisterActivity extends AppCompatActivity {
     EditText etCity;
     EditText etPassword;
     Button btnRegister;
+
+    //Variables Passed to Register Form via Post Request
+
+    String CustomerName;
+    String CustomerEmail;
+    Editable CustomerPhone;
+    String CustomerAddress;
+    String CustomerCity;
+    String CustomerPassword;
 
 
     @Override
@@ -44,19 +56,57 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (etName.getText().toString().trim().equals("")) {
+                    etName.setError("Name is Required");
+                } else {
+                    CustomerName = etName.getText().toString();
+                }
+                if (etEmail.getText().toString().trim().equals("")) {
+                    etEmail.setError("Email is Required");
+                } else {
+                    CustomerEmail = etEmail.getText().toString();
+                }
+                if (etPhone.getText().toString().equals("")) {
+                    etPhone.setError("Phone is Required");
+                } else {
+                    CustomerPhone = etPhone.getText();
+                }
+                if (etAddress.getText().toString().trim().equals("")) {
+                    etAddress.setError("Address is Required");
+                } else {
+                    CustomerAddress = etAddress.getText().toString();
+                }
+                if (etCity.getText().toString().trim().equals("")) {
+                    etCity.setError("City is Required");
+                } else {
+                    CustomerCity = etCity.getText().toString();
+                }
+                if (etPassword.getText().toString().trim().equals("")) {
+                    etPassword.setError("Password is Required");
+                } else {
+                    CustomerPassword = etPassword.getText().toString();
+                }
+
 
                 Retrofit retrofit = RetrofitClient.getClient();
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
 
-                Call<Customer> customerCall = apiInterface.registerCustomer(etName.getText().toString(),
-                        etEmail.getText().toString(), Integer.parseInt(etPhone.getText().toString()),
-                        etAddress.getText().toString(), etCity.getText().toString(), etPassword.getText().toString());
+                Call<Customer> customerCall = apiInterface.registerCustomer(CustomerName, CustomerEmail,
+                        (CustomerPhone), CustomerAddress, CustomerCity, CustomerPassword);
 
                 customerCall.enqueue(new Callback<Customer>() {
                     @Override
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+                        if (response.isSuccessful())
+                        {
+                            Intent intent = new Intent(RegisterActivity.this, GetRestaurants.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(RegisterActivity.this, "Failed to Register", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
@@ -65,8 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
-                Intent intent = new Intent(RegisterActivity.this, GetRestaurants.class);
-                startActivity(intent);
+
 
             }
         });

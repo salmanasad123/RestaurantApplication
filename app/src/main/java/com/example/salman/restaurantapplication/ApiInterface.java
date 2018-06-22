@@ -1,5 +1,7 @@
 package com.example.salman.restaurantapplication;
 
+import android.text.Editable;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -95,7 +97,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Customer> registerCustomer(@Field("Name") String Name,
                                     @Field("CustomerEmail") String CustomerEmail,
-                                    @Field("CustomerPhone") int CustomerPhone,
+                                    @Field("CustomerPhone") Editable CustomerPhone,
                                     @Field("CustomerAddress") String CustomerAddress,
                                     @Field("City") String City,
                                     @Field("Password") String Password);

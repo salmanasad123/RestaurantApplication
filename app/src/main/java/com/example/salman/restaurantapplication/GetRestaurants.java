@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -47,6 +48,7 @@ public class GetRestaurants extends AppCompatActivity {
     DividerItemDecoration dividerItemDecoration;
     RestaurantAdapter restaurantAdapter;
 
+    Button customerAccountinfo;
 
 
     // ACTIVITY
@@ -66,6 +68,7 @@ public class GetRestaurants extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.mainImage);
         editText = findViewById(R.id.SearchEditText);
+        customerAccountinfo = findViewById(R.id.AccountInfo);
         toolbar = findViewById(R.id.getRestaurantToolbar);
 
         setSupportActionBar(toolbar);
@@ -73,7 +76,13 @@ public class GetRestaurants extends AppCompatActivity {
         // recyclerView.addItemDecoration(dividerItemDecoration);
 
 
-        //ToolBar
+        customerAccountinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             Intent intent = new Intent(GetRestaurants.this,CustomerAccountActivity.class);
+             startActivity(intent);
+            }
+        });
 
 
         /**
@@ -165,6 +174,7 @@ public class GetRestaurants extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
 
 
 }

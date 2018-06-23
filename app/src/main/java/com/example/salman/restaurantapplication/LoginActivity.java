@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import okhttp3.internal.Util;
@@ -80,13 +82,20 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
 
                         Log.d(TAG, "onResponse: " + response.body());
+                        customerList = response.body();
+
+                        AccountInfoEvent accountInfoEvent = new AccountInfoEvent(customerList);
+                        EventBus.getDefault().postSticky(accountInfoEvent);
+
 
                         if (!response.body().isEmpty()) {
+
 
                             Intent intent = new Intent(LoginActivity.this, GetRestaurants.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(LoginActivity.this, "Credentials Do Not Match", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content), "Credentials Do Not Match", Snackbar.LENGTH_LONG)
+                                    .show();
                         }
 
 

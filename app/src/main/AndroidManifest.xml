@@ -28,7 +28,8 @@
         <activity android:name=".RestaurantDetailsActivity" />
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".CustomerAccountActivity"></activity>
     </application>
 
 </manifest>

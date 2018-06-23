@@ -1,6 +1,7 @@
 package com.example.salman.restaurantapplication;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -100,13 +101,20 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
 
-                        Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+
+
+                        //Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
                         if (response.isSuccessful()) {
+
+                            Snackbar.make(findViewById(android.R.id.content), "Successfully Registered", Snackbar.LENGTH_LONG)
+                                    .show();
+
                             Intent intent = new Intent(RegisterActivity.this, GetRestaurants.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Failed to Register", Toast.LENGTH_LONG).show();
+                            Snackbar.make(findViewById(android.R.id.content), "Failed To Register", Snackbar.LENGTH_LONG)
+                                    .show();
                         }
                     }
 

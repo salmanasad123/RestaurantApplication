@@ -71,7 +71,7 @@ public class GetRestaurants extends AppCompatActivity {
         customerAccountinfo = findViewById(R.id.AccountInfo);
         toolbar = findViewById(R.id.getRestaurantToolbar);
 
-        setSupportActionBar(toolbar);
+
         // dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         // recyclerView.addItemDecoration(dividerItemDecoration);
 

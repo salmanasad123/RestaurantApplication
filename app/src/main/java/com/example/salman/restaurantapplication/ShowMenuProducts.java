@@ -67,10 +67,8 @@ public class ShowMenuProducts extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6:8000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        Retrofit retrofit = RetrofitClient.getClient();
+
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         Call<List<GetMenuProducts>> listCall = apiInterface.getMenuProducts(getCategoryiD, RestaurantIDfromEventBus);

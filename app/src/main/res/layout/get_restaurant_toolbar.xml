@@ -7,4 +7,14 @@
     android:elevation="4dp"
     android:gravity="center">
 
+    <TextView
+        android:id="@+id/loginActivityToolbarTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Restaurants"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
 </android.support.v7.widget.Toolbar>

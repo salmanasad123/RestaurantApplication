@@ -65,12 +65,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
         holder.addProductbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(showMenuProducts, "Item Added To Cart  " + products.getProductName(), Toast.LENGTH_SHORT).show();
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.6:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+
+                Retrofit retrofit = RetrofitClient.getClient();
+
 
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID(),
@@ -81,6 +79,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
                     @Override
                     public void onResponse(Call<Cart> call, Response<Cart> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+
+                        if (response.code() == 500) {
+                            Toast.makeText(showMenuProducts, "Item Already In Cart", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(showMenuProducts, "Item Added To Cart  " + products.getProductName(), Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override

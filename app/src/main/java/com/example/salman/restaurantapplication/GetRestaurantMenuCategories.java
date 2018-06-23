@@ -50,7 +50,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(GetRestaurantMenuCategories.this,CartActivity.class);
+        Intent intent = new Intent(GetRestaurantMenuCategories.this, CartActivity.class);
         startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
@@ -96,10 +96,7 @@ public class GetRestaurantMenuCategories extends AppCompatActivity {
         // EventBus.getDefault().postSticky(getRestaurantIDEvent);
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6:8000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        Retrofit retrofit = RetrofitClient.getClient();
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         final Call<List<RestaurantCategories>> restaurantCategoriesCall = apiInterface.getRestaurantMenuCategories(getRestaurantID);

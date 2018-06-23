@@ -101,10 +101,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 Cart cart1 = new Cart(counter);
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.6:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                Retrofit retrofit = RetrofitClient.getClient();
 
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 Call<Cart> call = apiInterface.updateCart(cart.getCartItemID(), cart1);
@@ -142,10 +139,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
                 Cart cart1 = new Cart(counter);
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.6:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                Retrofit retrofit = RetrofitClient.getClient();
+
 
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 Call<Cart> call = apiInterface.updateCart(cart.getCartItemID(), cart1);
@@ -171,10 +166,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             public void onClick(View view) {
 
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.6:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                Retrofit retrofit = RetrofitClient.getClient();
+
 
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 Call<Cart> cartCall = apiInterface.deleteItemFromCart(cart.getCartItemID());

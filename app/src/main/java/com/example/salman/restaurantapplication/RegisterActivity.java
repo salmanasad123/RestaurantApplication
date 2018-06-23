@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText etCity;
     EditText etPassword;
     Button btnRegister;
+    android.support.v7.widget.Toolbar toolbar;
 
     //Variables Passed to Register Form via Post Request
 
@@ -44,6 +46,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        toolbar = findViewById(R.id.registerActivitToolbar);
+
+
         etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
         etPhone = findViewById(R.id.etPhone);
@@ -100,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
-
 
 
                         //Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();

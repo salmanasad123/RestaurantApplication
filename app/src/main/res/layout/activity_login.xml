@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.salman.restaurantapplication.LoginActivity">
 
+    <include layout="@layout/login_activity_toolbar">
+        <TextView
+            android:id="@+id/loginActivityToolbarTextView"
+            android:text="Login"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:textAlignment="center"/>
+
+
+    </include>
+
     <EditText
         android:id="@+id/etInputEmail"
         android:layout_width="match_parent"

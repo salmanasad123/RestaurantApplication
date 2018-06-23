@@ -36,6 +36,12 @@ public class Customer {
     @Expose
     private String updatedAt;
 
+    public Customer(String customerPhone, String customerAddress, String password) {
+        this.customerPhone = customerPhone;
+        this.customerAddress = customerAddress;
+        this.password = password;
+    }
+
     public Integer getCustomerID() {
         return customerID;
     }

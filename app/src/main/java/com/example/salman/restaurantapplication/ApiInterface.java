@@ -103,11 +103,12 @@ public interface ApiInterface {
                                     @Field("Password") String Password);
 
 
-
     @POST("api/login")
     @FormUrlEncoded
     Call<List<Customer>> postLoginData(@Field("CustomerEmail") String CustomerEmail,
-                                 @Field("Password") String Password
+                                       @Field("Password") String Password
     );
 
+    @PUT("api/profile/{id}")
+    Call<Customer> updateProfile(@Path("id") int id, @Body Customer customer);
 }

@@ -35,6 +35,14 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/categoriesArrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@+id/showCategories"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/forwardicon" />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

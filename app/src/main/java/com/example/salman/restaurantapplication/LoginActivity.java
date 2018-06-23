@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     String getPassword;
 
     List<Customer> customerList;
+    Integer CustomerID;
 
 
     @Override
@@ -88,6 +89,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         Log.d(TAG, "onResponse: " + response.body());
                         customerList = response.body();
+
+                        for (int i = 0; i < customerList.size(); i++) {
+                            CustomerID = customerList.get(i).getCustomerID();
+                            EventBus.getDefault().postSticky(new AccountIDEvent(CustomerID));
+                        }
 
                         AccountInfoEvent accountInfoEvent = new AccountInfoEvent(customerList);
                         EventBus.getDefault().postSticky(accountInfoEvent);

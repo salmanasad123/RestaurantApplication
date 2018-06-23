@@ -49,10 +49,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
                 Toast.makeText(FeedbackActivity.this, "Feedback Sent Successfully", Toast.LENGTH_SHORT).show();
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.6:8000")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                Retrofit retrofit = RetrofitClient.getClient();
 
 
                 ApiInterface apiInterface = retrofit.create(ApiInterface.class);
@@ -66,14 +63,13 @@ public class FeedbackActivity extends AppCompatActivity {
                     }
 
 
-
                     @Override
                     public void onFailure(Call<Feedback> call, Throwable t) {
                         Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
                     }
                 });
 
-                Intent intent = new Intent(FeedbackActivity.this,GetRestaurants.class);
+                Intent intent = new Intent(FeedbackActivity.this, GetRestaurants.class);
                 startActivity(intent);
             }
 

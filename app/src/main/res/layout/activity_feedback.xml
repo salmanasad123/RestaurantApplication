@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.example.salman.restaurantapplication.FeedbackActivity">
 
+    <include
+        layout="@layout/feedback_activity_toolbar"></include>
 
     <TextView
         android:id="@+id/FeedbackQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="160dp"
         android:gravity="center_horizontal"
         android:text="We hope you enjoyed your meal with us today"
         android:textAlignment="center"
@@ -40,35 +43,34 @@
         app:layout_constraintTop_toBottomOf="@+id/FeedbackQuestion" />
 
 
-
-
     <EditText
-        android:layout_margin="10dp"
         android:id="@+id/inputFeedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="92dp"
         android:hint="Enter your Comments"
         android:inputType="textMultiLine"
         android:lines="5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feedbackRating" />
 
     <Button
+        android:id="@+id/btnFeedbackSumbit"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/round_button"
+        android:text="Send Feedback"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        android:background="#e57373"
-        android:id="@+id/btnFeedbackSumbit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="Send Feedback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputFeedback" />

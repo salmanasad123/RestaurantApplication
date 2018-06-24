@@ -89,6 +89,8 @@ public class CustomerAccountActivity extends AppCompatActivity {
                 sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit().clear();
                 editor.apply();
+                Intent intent = new Intent(CustomerAccountActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
 

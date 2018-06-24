@@ -4,7 +4,7 @@
     android:id="@+id/loginActivityToolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorAccent"
+    android:background="#796555"
     android:elevation="4dp"
     android:textAlignment="center">
 
@@ -17,6 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Login"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 </android.support.v7.widget.Toolbar>

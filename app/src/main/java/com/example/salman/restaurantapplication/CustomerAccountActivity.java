@@ -25,7 +25,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
     private static final String TAG = "MTAG";
 
-    
+
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -37,6 +37,8 @@ public class CustomerAccountActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Integer customerIDfromEventBus;
     List<Customer> customerList1;
+
+    Integer customerIDfromSharedPreference;
 
 
     @Override
@@ -52,14 +54,18 @@ public class CustomerAccountActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
+        customerIDfromSharedPreference = sharedPreferences.getInt("customerID", 0);
+
         Retrofit retrofit = RetrofitClient.getClient();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
+        Call<List<Customer>> listCall = apiInterface.getProfile(customerIDfromSharedPreference);
 
-        Call<List<Customer>> listCall = apiInterface.getProfile(customerIDfromEventBus);
         listCall.enqueue(new Callback<List<Customer>>() {
             @Override
             public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
+
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
                 customerList1 = response.body();
 
@@ -77,6 +83,14 @@ public class CustomerAccountActivity extends AppCompatActivity {
         //  accountInfoAdapter = new AccountInfoAdapter(CustomerAccountActivity.this, customerList);
         // recyclerView.setAdapter(accountInfoAdapter);
 
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit().clear();
+                editor.apply();
+            }
+        });
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +104,11 @@ public class CustomerAccountActivity extends AppCompatActivity {
     }
 
 
-        @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-        public void Event(AccountIDEvent accountIDEvent) {
-            customerIDfromEventBus = accountIDEvent.getId();
-            Log.d(TAG, "Event: ID Received" + customerIDfromEventBus);
-        }
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void Event(AccountIDEvent accountIDEvent) {
+        customerIDfromEventBus = accountIDEvent.getId();
+        Log.d(TAG, "Event: ID Received" + customerIDfromEventBus);
+    }
     /*
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(AccountInfoEvent accountInfoEvent) {

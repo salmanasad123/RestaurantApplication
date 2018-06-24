@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
     String customerEmail;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +61,6 @@ public class LoginActivity extends AppCompatActivity {
         Login = findViewById(R.id.btnLogin);
 
         sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
-
-
-
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -99,20 +95,21 @@ public class LoginActivity extends AppCompatActivity {
 
                         customerList = response.body();
 
-                        for (int i = 0; i < customerList.size(); i++) {
+                        if (!response.body().isEmpty()) {
+                            for (int i = 0; i < customerList.size(); i++) {
 
-                            CustomerID = customerList.get(i).getCustomerID();
-                            EventBus.getDefault().postSticky(new AccountIDEvent(CustomerID));
+                                CustomerID = customerList.get(i).getCustomerID();
+                                EventBus.getDefault().postSticky(new AccountIDEvent(CustomerID));
+                                customerEmail = customerList.get(i).getCustomerEmail();
+                            }
+                             SharedPreferences.Editor editor = sharedPreferences.edit();
+                             editor.putString("username", customerEmail);
+                             editor.putInt("customerID", CustomerID);
+                             editor.apply();
 
-                            customerEmail = customerList.get(i).getCustomerEmail();
                         }
 
 
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("username", customerEmail);
-
-
-                        editor.apply();
 
                         //   AccountInfoEvent accountInfoEvent = new AccountInfoEvent(customerList);
                         //   EventBus.getDefault().postSticky(accountInfoEvent);
@@ -120,9 +117,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (!response.body().isEmpty()) {
 
-
                             Intent intent = new Intent(LoginActivity.this, GetRestaurants.class);
                             startActivity(intent);
+
                         } else {
                             Snackbar.make(findViewById(android.R.id.content), "Credentials Do Not Match", Snackbar.LENGTH_LONG)
                                     .show();

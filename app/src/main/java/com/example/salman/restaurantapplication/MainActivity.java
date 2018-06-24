@@ -29,15 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
                 username = sharedPreferences.getString("username", "x");
 
-                /*
                 if (username != "x") {
                     Intent intent = new Intent(MainActivity.this, GetRestaurants.class);
                     startActivity(intent);
-                } else {*/
+                } else {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
-            //}
+            }
         });
     }
 }

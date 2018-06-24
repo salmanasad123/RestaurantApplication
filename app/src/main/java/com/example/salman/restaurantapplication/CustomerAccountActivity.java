@@ -25,7 +25,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
     private static final String TAG = "MTAG";
 
-    List<Customer> customerList;
+    
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -77,17 +77,6 @@ public class CustomerAccountActivity extends AppCompatActivity {
         //  accountInfoAdapter = new AccountInfoAdapter(CustomerAccountActivity.this, customerList);
         // recyclerView.setAdapter(accountInfoAdapter);
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //    sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
-                //   SharedPreferences.Editor editor = sharedPreferences.edit().clear();
-                //  editor.apply();
-
-                Intent intent = new Intent(CustomerAccountActivity.this, TempActivity.class);
-                startActivity(intent);
-            }
-        });
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override

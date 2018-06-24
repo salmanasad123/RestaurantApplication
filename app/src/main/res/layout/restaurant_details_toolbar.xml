@@ -3,7 +3,7 @@
     android:id="@+id/detailsActivityToolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#796555"
+    android:background="#d3c5bc"
     android:elevation="4dp"
     android:textAlignment="center">
 

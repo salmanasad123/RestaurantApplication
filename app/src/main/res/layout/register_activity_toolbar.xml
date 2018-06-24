@@ -4,8 +4,7 @@
     android:id="@+id/registerActivitToolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#796555"
-    android:elevation="4dp">
+    android:background="#796555">
 
 
     <TextView

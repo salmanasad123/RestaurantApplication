@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#e6c290"
-    android:elevation="4dp"
     android:textAlignment="center">
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/DetailsActivityToolbarTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Details"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </android.support.v7.widget.Toolbar>

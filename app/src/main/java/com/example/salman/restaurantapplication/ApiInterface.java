@@ -111,4 +111,10 @@ public interface ApiInterface {
 
     @PUT("api/profile/{id}")
     Call<Customer> updateProfile(@Path("id") int id, @Body Customer customer);
+
+
+    @GET("api/profile/{id}")
+    Call<List<Customer>> getProfile(@Path("id") int id);
 }
+
+

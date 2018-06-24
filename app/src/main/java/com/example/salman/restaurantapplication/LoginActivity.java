@@ -2,6 +2,7 @@ package com.example.salman.restaurantapplication;
 
 import android.content.Entity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.internal.Util;
@@ -28,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "MTAG";
 
     Toolbar toolbar;
-    Button btngoto;
     EditText inputEmail;
     EditText inputPassword;
     Button btnSignUp;
@@ -39,6 +42,10 @@ public class LoginActivity extends AppCompatActivity {
 
     List<Customer> customerList;
     Integer CustomerID;
+
+    SharedPreferences sharedPreferences;
+    String customerEmail;
+
 
 
     @Override
@@ -54,8 +61,10 @@ public class LoginActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
         Login = findViewById(R.id.btnLogin);
 
+        sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
 
-        btngoto = findViewById(R.id.buttonGoTo);
+
+
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -87,16 +96,26 @@ public class LoginActivity extends AppCompatActivity {
 
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
 
-                        Log.d(TAG, "onResponse: " + response.body());
+
                         customerList = response.body();
 
                         for (int i = 0; i < customerList.size(); i++) {
+
                             CustomerID = customerList.get(i).getCustomerID();
                             EventBus.getDefault().postSticky(new AccountIDEvent(CustomerID));
+
+                            customerEmail = customerList.get(i).getCustomerEmail();
                         }
 
-                        AccountInfoEvent accountInfoEvent = new AccountInfoEvent(customerList);
-                        EventBus.getDefault().postSticky(accountInfoEvent);
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("username", customerEmail);
+
+
+                        editor.apply();
+
+                        //   AccountInfoEvent accountInfoEvent = new AccountInfoEvent(customerList);
+                        //   EventBus.getDefault().postSticky(accountInfoEvent);
 
 
                         if (!response.body().isEmpty()) {

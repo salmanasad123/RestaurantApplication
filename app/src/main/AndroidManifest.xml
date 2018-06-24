@@ -30,7 +30,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".CustomerAccountActivity" />
-        <activity android:name=".ProfileUpdateActivity"></activity>
+        <activity android:name=".ProfileUpdateActivity" />
+        <activity android:name=".TempActivity"></activity>
     </application>
 
 </manifest>

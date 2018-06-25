@@ -1,6 +1,7 @@
 package com.example.salman.restaurantapplication;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.util.EventLog;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
     private static final String TAG = "MTAG";
 
     public int restaurantIdFromEventBus;
+    public Integer customerIDfromEventBus;
     ShowMenuProducts showMenuProducts;
     List<GetMenuProducts> getMenuProducts;
     List<Cart> cartList;
@@ -72,7 +74,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
 
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID(),
-                        products.getProductName(), products.getPrice(), 1, restaurantIdFromEventBus);
+                        products.getProductName(), products.getPrice(), 1, restaurantIdFromEventBus, customerIDfromEventBus);
 
 
                 cartCall.enqueue(new Callback<Cart>() {
@@ -125,5 +127,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(GetRestaurantIDEvent restaurantIDEvent) {
         restaurantIdFromEventBus = restaurantIDEvent.getValue();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void Event(AccountIDEvent accountIDEvent) {
+        customerIDfromEventBus = accountIDEvent.getId();
     }
 }

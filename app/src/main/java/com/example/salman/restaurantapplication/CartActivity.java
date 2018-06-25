@@ -38,13 +38,18 @@ public class CartActivity extends AppCompatActivity {
     TextView cartTaxAmount;
     Toolbar toolbar;
     CartAdapter cartAdapter;
+
     SharedPreferences preferences;
+    Integer CustomerIDfromSharedPreference;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        preferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
+        CustomerIDfromSharedPreference = preferences.getInt("customerID", 0);
 
 
         cartRecyclerView = findViewById(R.id.CartRecyclerView);
@@ -66,7 +71,7 @@ public class CartActivity extends AppCompatActivity {
 
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        Call<List<Cart>> listCall = apiInterface.showCart(RestaurantIDFromEventBus);
+        Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus,CustomerIDfromSharedPreference);
 
         listCall.enqueue(new Callback<List<Cart>>() {
 

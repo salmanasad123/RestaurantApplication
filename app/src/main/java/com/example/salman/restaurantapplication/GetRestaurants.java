@@ -2,6 +2,7 @@ package com.example.salman.restaurantapplication;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +22,8 @@ import android.widget.ProgressBar;
 
 
 import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,6 +52,8 @@ public class GetRestaurants extends AppCompatActivity {
     RestaurantAdapter restaurantAdapter;
 
     Button customerAccountinfo;
+    SharedPreferences sharedPreferences;
+    Integer CustomerIDfromSharedPreferences;
 
 
     // ACTIVITY
@@ -56,7 +61,10 @@ public class GetRestaurants extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_restaurants);
+        sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE);
+        CustomerIDfromSharedPreferences = sharedPreferences.getInt("customerID", 0);
 
+        EventBus.getDefault().postSticky(new AccountIDEvent(CustomerIDfromSharedPreferences));
 
         /**
          * RecyclerView
@@ -79,8 +87,8 @@ public class GetRestaurants extends AppCompatActivity {
         customerAccountinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             Intent intent = new Intent(GetRestaurants.this,CustomerAccountActivity.class);
-             startActivity(intent);
+                Intent intent = new Intent(GetRestaurants.this, CustomerAccountActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -174,7 +182,6 @@ public class GetRestaurants extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
 
 
 }

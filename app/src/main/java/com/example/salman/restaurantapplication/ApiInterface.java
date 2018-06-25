@@ -54,12 +54,16 @@ public interface ApiInterface {
 
     /**
      * Get CartItems Table with Get Request
-     * Every Restaurant will have a seperate cart maintained
+     * Every Restaurant will have a separate cart maintained
      * Restaurant ID being passed as parameter to Get Route to get cart of that specific restaurant
      */
 
     @GET("api/cartitems/{id}")
     Call<List<Cart>> showCart(@Path("id") int id);
+
+
+    @GET("api/cartitems/{restaurant_id}/{customer_id}")
+    Call<List<Cart>> getCart(@Path("restaurant_id") int restaurant_id, @Path("customer_id") int customer_id);
 
 
     /**
@@ -73,7 +77,8 @@ public interface ApiInterface {
                          @Field("ProductName") String ProductName,
                          @Field("ProductPrice") int ProductPrice,
                          @Field("quantity") int quantity,
-                         @Field("RestaurantID") int RestaurantID
+                         @Field("RestaurantID") int RestaurantID,
+                         @Field("CustomerID") int CustomerID
     );
 
     @PUT("api/cartitems/{id}")
@@ -81,6 +86,7 @@ public interface ApiInterface {
 
     @DELETE("api/cartitems/{id}")
     Call<Cart> deleteItemFromCart(@Path("id") int id);
+
 
     @POST("api/feedback")
     @FormUrlEncoded

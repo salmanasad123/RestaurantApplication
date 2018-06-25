@@ -58,9 +58,14 @@ public interface ApiInterface {
      * Restaurant ID being passed as parameter to Get Route to get cart of that specific restaurant
      */
 
+    // Route to get cart items of every restaurant
+    // Maintaining Cart for every restaurant will allow not to order items from multiple restaurants.
     @GET("api/cartitems/{id}")
     Call<List<Cart>> showCart(@Path("id") int id);
 
+
+    // Route to get cart items of individual Customers and individual restaurant. Maintaining cart
+    // for every restaurant will allow not to order items from multiple restaurants.
 
     @GET("api/cartitems/{restaurant_id}/{customer_id}")
     Call<List<Cart>> getCart(@Path("restaurant_id") int restaurant_id, @Path("customer_id") int customer_id);

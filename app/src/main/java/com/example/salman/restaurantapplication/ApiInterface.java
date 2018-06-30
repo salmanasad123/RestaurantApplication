@@ -126,6 +126,7 @@ public interface ApiInterface {
 
     @GET("api/profile/{id}")
     Call<List<Customer>> getProfile(@Path("id") int id);
+
 }
 
 

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -74,7 +75,7 @@ public class CartActivity extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getClient();
 
 
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
         Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus, CustomerIDfromSharedPreference);
 
         listCall.enqueue(new Callback<List<Cart>>() {
@@ -98,6 +99,14 @@ public class CartActivity extends AppCompatActivity {
         });
 
 
+        placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+        });
     }
 
 

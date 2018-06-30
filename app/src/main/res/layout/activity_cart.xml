@@ -157,6 +157,17 @@
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnPlaceOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CartTotalBill"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_button"
+            android:text="Place Order"
+            android:textColor="#FFFFFF" />
     </RelativeLayout>
 
 

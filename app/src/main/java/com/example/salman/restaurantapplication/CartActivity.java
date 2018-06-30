@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,6 +37,7 @@ public class CartActivity extends AppCompatActivity {
     TextView cartTotalAmount;
     TextView cartSubTotalAmount;
     TextView cartTaxAmount;
+    Button placeOrder;
     Toolbar toolbar;
     CartAdapter cartAdapter;
 
@@ -62,6 +64,8 @@ public class CartActivity extends AppCompatActivity {
         cartSubTotalAmount = findViewById(R.id.CartSubTotalAmount);
         cartTaxAmount = findViewById(R.id.CartTaxAmount);
         cartTotalAmount = findViewById(R.id.CartTotalAmount);
+        placeOrder = findViewById(R.id.btnPlaceOrder);
+
         toolbar = findViewById(R.id.cartActivityToolbar);
         setSupportActionBar(toolbar);
 
@@ -71,7 +75,7 @@ public class CartActivity extends AppCompatActivity {
 
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus,CustomerIDfromSharedPreference);
+        Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus, CustomerIDfromSharedPreference);
 
         listCall.enqueue(new Callback<List<Cart>>() {
 

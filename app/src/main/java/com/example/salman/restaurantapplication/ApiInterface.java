@@ -129,7 +129,13 @@ public interface ApiInterface {
 
     @POST("api/orderdetails")
     @FormUrlEncoded
-    Call<OrderDetails> postOrderDetails(@Field("CartItemID") int CartItemID);
+    Call<DetailsOrder> getOrderDetails(@Field("ProductName") String ProductName,
+                                       @Field("quantity") int quantity,
+                                       @Field("OrderType") String OrderType,
+                                       @Field("TotalAmount") int TotalAmount,
+                                       @Field("CustomerID") int CustomerID,
+                                       @Field("RestaurantID") int RestaurantID);
+
 }
 
 

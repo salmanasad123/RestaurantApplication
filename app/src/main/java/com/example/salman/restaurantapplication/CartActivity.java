@@ -1,6 +1,8 @@
 package com.example.salman.restaurantapplication;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,11 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -105,8 +114,9 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Retrofit retrofit = RetrofitClient.getClient();
-                ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+                final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus, CustomerIDfromSharedPreference);
 
                 listCall.enqueue(new Callback<List<Cart>>() {
@@ -117,24 +127,29 @@ public class CartActivity extends AppCompatActivity {
 
                         OrderDetailsList = response.body();
 
+
                         for (int i = 0; i < OrderDetailsList.size(); i++) {
 
-                            Retrofit retrofit1 = RetrofitClient.getClient();
-                            ApiInterface apiInterface1 = retrofit1.create(ApiInterface.class);
-                            Call<OrderDetails> orderDetailsCall = apiInterface1.postOrderDetails(OrderDetailsList.get(i).getCartItemID());
-                            orderDetailsCall.enqueue(new Callback<OrderDetails>() {
-                                @Override
-                                public void onResponse(Call<OrderDetails> call, Response<OrderDetails> response) {
+                            Retrofit retrofit2 = RetrofitClient.getClient();
+                            ApiInterface apiInterface2 = retrofit2.create(ApiInterface.class);
+                            Call<DetailsOrder> orderCall = apiInterface2.getOrderDetails(OrderDetailsList.get(i).getProductName(),
+                                    OrderDetailsList.get(i).getQuantity(), "COD", (int) Total, CustomerIDfromSharedPreference, RestaurantIDFromEventBus);
 
+                            orderCall.enqueue(new Callback<DetailsOrder>() {
+                                @Override
+                                public void onResponse(Call<DetailsOrder> call, Response<DetailsOrder> response) {
+
+                                    Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
                                 }
 
                                 @Override
-                                public void onFailure(Call<OrderDetails> call, Throwable t) {
+                                public void onFailure(Call<DetailsOrder> call, Throwable t) {
 
+                                    Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
                                 }
                             });
-
                         }
+
                     }
 
                     @Override

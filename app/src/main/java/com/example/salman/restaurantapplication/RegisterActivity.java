@@ -114,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Snackbar.make(findViewById(android.R.id.content), "Successfully Registered", Snackbar.LENGTH_LONG)
                                     .show();
 
-                            Intent intent = new Intent(RegisterActivity.this, GetRestaurants.class);
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         } else {
                             Snackbar.make(findViewById(android.R.id.content), "Failed To Register", Snackbar.LENGTH_LONG)

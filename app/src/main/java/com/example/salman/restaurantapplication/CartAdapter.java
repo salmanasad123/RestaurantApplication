@@ -165,6 +165,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             @Override
             public void onClick(View view) {
 
+                total = 0;
+
+                EventBus.getDefault().post(new CartTotalEvent(total));
 
                 Retrofit retrofit = RetrofitClient.getClient();
 
@@ -175,6 +178,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     @Override
                     public void onResponse(Call<Cart> call, Response<Cart> response) {
                         Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+
+
                     }
 
                     @Override
@@ -187,6 +192,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 carts.remove(position);
                 notifyDataSetChanged();
             }
+
         });
 
 

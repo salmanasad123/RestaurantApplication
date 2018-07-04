@@ -127,6 +127,9 @@ public interface ApiInterface {
     @GET("api/profile/{id}")
     Call<List<Customer>> getProfile(@Path("id") int id);
 
+    @POST("api/orderdetails")
+    @FormUrlEncoded
+    Call<OrderDetails> postOrderDetails(@Field("CartItemID") int CartItemID);
 }
 
 

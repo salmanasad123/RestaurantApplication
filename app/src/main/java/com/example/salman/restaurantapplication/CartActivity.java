@@ -42,6 +42,8 @@ public class CartActivity extends AppCompatActivity {
     Toolbar toolbar;
     CartAdapter cartAdapter;
 
+    List<Cart> OrderDetailsList;
+
     SharedPreferences preferences;
     Integer CustomerIDfromSharedPreference;
 
@@ -84,7 +86,7 @@ public class CartActivity extends AppCompatActivity {
             public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
                 Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
                 cartList = response.body();
-                CartAdapter cartAdapter = new CartAdapter(CartActivity.this, cartList);
+                cartAdapter = new CartAdapter(CartActivity.this, cartList);
                 cartRecyclerView.setAdapter(cartAdapter);
 
 
@@ -103,7 +105,44 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Retrofit retrofit = RetrofitClient.getClient();
+                ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+                Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus, CustomerIDfromSharedPreference);
 
+                listCall.enqueue(new Callback<List<Cart>>() {
+                    @Override
+                    public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
+
+                        Log.d(TAG, "onResponse() called with: call = [" + call + "], response = [" + response + "]");
+
+                        OrderDetailsList = response.body();
+
+                        for (int i = 0; i < OrderDetailsList.size(); i++) {
+
+                            Retrofit retrofit1 = RetrofitClient.getClient();
+                            ApiInterface apiInterface1 = retrofit1.create(ApiInterface.class);
+                            Call<OrderDetails> orderDetailsCall = apiInterface1.postOrderDetails(OrderDetailsList.get(i).getCartItemID());
+                            orderDetailsCall.enqueue(new Callback<OrderDetails>() {
+                                @Override
+                                public void onResponse(Call<OrderDetails> call, Response<OrderDetails> response) {
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<OrderDetails> call, Throwable t) {
+
+                                }
+                            });
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Cart>> call, Throwable t) {
+
+                        Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
+                    }
+                });
 
             }
         });

@@ -7,7 +7,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/orderDetailsCardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardElevation="@dimen/cardview_default_radius">
 
@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/restaurantImageView"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="25dp"
                 android:layout_toEndOf="@+id/restaurantImageView"
                 android:text="RestaurantName"
                 android:textColor="#000000"

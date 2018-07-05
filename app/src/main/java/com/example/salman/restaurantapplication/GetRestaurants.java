@@ -48,10 +48,11 @@ public class GetRestaurants extends AppCompatActivity {
     EditText editText;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    DividerItemDecoration dividerItemDecoration;
+
     RestaurantAdapter restaurantAdapter;
 
     Button customerAccountinfo;
+    Button orderHistory;
     SharedPreferences sharedPreferences;
     Integer CustomerIDfromSharedPreferences;
 
@@ -77,6 +78,7 @@ public class GetRestaurants extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.mainImage);
         editText = findViewById(R.id.SearchEditText);
         customerAccountinfo = findViewById(R.id.AccountInfo);
+        orderHistory = findViewById(R.id.btnOrderDetails);
         toolbar = findViewById(R.id.getRestaurantToolbar);
 
 
@@ -88,6 +90,13 @@ public class GetRestaurants extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GetRestaurants.this, CustomerAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+        orderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GetRestaurants.this, OrderDetailsActivity.class);
                 startActivity(intent);
             }
         });

@@ -136,6 +136,9 @@ public interface ApiInterface {
                                        @Field("CustomerID") int CustomerID,
                                        @Field("RestaurantID") int RestaurantID);
 
+    @GET("api/orderdetails/{customer_id}")
+    Call<List<OrderHistory>> getOrderHistory(@Path("customer_id") int customer_id);
+
 }
 
 

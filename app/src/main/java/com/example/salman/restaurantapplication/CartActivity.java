@@ -58,7 +58,7 @@ public class CartActivity extends AppCompatActivity {
 
     AlertDialog alertDialog;
     CharSequence[] values = {" Cash On Delivery ", " Dine In ", " Take Away "};
-    String choice;
+    public String choice;
 
 
     @Override
@@ -118,37 +118,42 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                    builder.setTitle("Select Your Choice");
+                    builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int item) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
-                builder.setTitle("Select Your Choice");
-                builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int item) {
+                            switch (item) {
+                                case 0:
+                                    Toast.makeText(CartActivity.this, "Cash on Delivery", Toast.LENGTH_SHORT).show();
+                                    choice = "Cash on Delivery";
+                                    break;
 
-                        switch (item) {
-                            case 0:
-                                Toast.makeText(CartActivity.this, "Cash on Delivery", Toast.LENGTH_SHORT).show();
-                                choice = "Cash on Delivery";
-                                break;
-
-                            case 1:
-                                Toast.makeText(CartActivity.this, "Dine In", Toast.LENGTH_SHORT).show();
-                                choice = "Dine In";
-                                break;
+                                case 1:
+                                    Toast.makeText(CartActivity.this, "Dine In", Toast.LENGTH_SHORT).show();
+                                    choice = "Dine In";
+                                    break;
 
 
-                            case 2:
-                                Toast.makeText(CartActivity.this, "Take Away", Toast.LENGTH_SHORT).show();
-                                choice = "Take Away";
-                                break;
+                                case 2:
+                                    Toast.makeText(CartActivity.this, "Take Away", Toast.LENGTH_SHORT).show();
+                                    choice = "Take Away";
+                                    break;
+                            }
+                            alertDialog.dismiss();
+                            postSelection();
                         }
-                        alertDialog.dismiss();
-                    }
-                });
-                alertDialog = builder.create();
-                alertDialog.show();
+                    });
+                    alertDialog = builder.create();
+                    alertDialog.show();
 
+                }
+            }
 
+                public void postSelection(){
+                
                 Retrofit retrofit = RetrofitClient.getClient();
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus, CustomerIDfromSharedPreference);
@@ -163,6 +168,7 @@ public class CartActivity extends AppCompatActivity {
 
 
                         for (int i = 0; i < OrderDetailsList.size(); i++) {
+
 
                             Retrofit retrofit2 = RetrofitClient.getClient();
                             ApiInterface apiInterface2 = retrofit2.create(ApiInterface.class);
@@ -181,7 +187,9 @@ public class CartActivity extends AppCompatActivity {
 
                                     Log.d(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
                                 }
+
                             });
+
                         }
 
                     }
@@ -193,7 +201,11 @@ public class CartActivity extends AppCompatActivity {
                     }
                 });
 
-            }
+                }
+
+
+
+    //        }
         });
     }
 

@@ -39,6 +39,18 @@ public class Cart {
     @Expose
     private Object updatedAt;
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    @SerializedName("price")
+    @Expose
+    private Integer price;
+
     public Integer getCustomerID() {
         return customerID;
     }
@@ -116,7 +128,6 @@ public class Cart {
     }
 
 }
-
 
 
 

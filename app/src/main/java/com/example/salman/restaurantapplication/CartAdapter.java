@@ -61,12 +61,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
 
         holder.CartProductName.setText(cart.getProductName());
-        holder.CartProductPrice.setText("Rs " + cart.getProductPrice().toString());
+        holder.CartProductPrice.setText("Rs " + cart.getPrice().toString());
         holder.productQty.setText(cart.getQuantity().toString());
 
 
         Integer qty = Integer.valueOf(holder.productQty.getText().toString());
-        total = total + (qty * carts.get(position).getProductPrice());
+        total = total + (qty * carts.get(position).getPrice());
 
 
         //   total = total + carts.get(position).getProductPrice();
@@ -91,7 +91,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 //Cart cart1 = new Cart(cart.getCartItemID(), cart.getProductID(), cart.getProductName(),cart.getProductPrice(), counter);
 
 
-                total = total + cart.getProductPrice();
+                total = total + cart.getPrice();
 
                 EventBus.getDefault().post(new CartTotalEvent(total));
 
@@ -132,7 +132,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 if (counter > 1) {
                     holder.productQty.setText("" + --counter);
 
-                    total = total - cart.getProductPrice();
+                    total = total - cart.getPrice();
                     EventBus.getDefault().post(new CartTotalEvent(total));
                     Log.d(TAG, "onClick: " + total);
                 }

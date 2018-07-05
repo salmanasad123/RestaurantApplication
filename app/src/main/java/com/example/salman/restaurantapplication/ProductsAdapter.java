@@ -73,8 +73,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
 
 
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-                final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID(),
-                        products.getProductName(), products.getPrice(), 1, restaurantIdFromEventBus, customerIDfromEventBus);
+                final Call<Cart> cartCall = apiInterface.addToCart(products.getProductID(),1,restaurantIdFromEventBus, customerIDfromEventBus);
 
 
                 cartCall.enqueue(new Callback<Cart>() {

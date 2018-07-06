@@ -143,7 +143,7 @@ public class CartActivity extends AppCompatActivity {
                                     break;
                             }
                             alertDialog.dismiss();
-                            postSelection();
+                             postSelection();
                         }
                     });
                     alertDialog = builder.create();

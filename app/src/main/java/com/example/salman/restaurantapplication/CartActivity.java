@@ -153,7 +153,7 @@ public class CartActivity extends AppCompatActivity {
             }
 
                 public void postSelection(){
-                
+
                 Retrofit retrofit = RetrofitClient.getClient();
                 final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
                 Call<List<Cart>> listCall = apiInterface.getCart(RestaurantIDFromEventBus, CustomerIDfromSharedPreference);
